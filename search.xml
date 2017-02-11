@@ -272,7 +272,7 @@
 <li><code>bower install &lt;package&gt;</code>下载指定的包</li>
 <li><code>bower uninstall &lt;package&gt;</code>删除指定的包</li>
 <li><code>bower info &lt;package&gt;</code> 查看指定的包版本信息</li>
-<li><code>bower</code></li>
+<li><code>bower</code> ..</li>
 </ol>
 <p>参考连接</p>
 <ul>
