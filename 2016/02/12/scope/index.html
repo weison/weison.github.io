@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="作用域概念在特定的空间或范围内对数据进行读写操作
+作用：读、写操作
+域：空间、范围、区域…
+
+一对script标签就是一个域
+有域的地方就会发生预解释和逐行解释代码的过程
+在解释的时候，是自上而下来解读的，一个处理完再处理另外一个
+123456&amp;lt;script&amp;gt;	alert(a); //报错，因为js会一个个域自上而下的解释，在执行里的时修，a还没有定义&amp;lt;/script&amp;gt;&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域">
+<meta property="og:url" content="weison.org/2016/02/12/scope/index.html">
+<meta property="og:site_name" content="hey">
+<meta property="og:description" content="作用域概念在特定的空间或范围内对数据进行读写操作
+作用：读、写操作
+域：空间、范围、区域…
+
+一对script标签就是一个域
+有域的地方就会发生预解释和逐行解释代码的过程
+在解释的时候，是自上而下来解读的，一个处理完再处理另外一个
+123456&amp;lt;script&amp;gt;	alert(a); //报错，因为js会一个个域自上而下的解释，在执行里的时修，a还没有定义&amp;lt;/script&amp;gt;&amp;l">
+<meta property="og:updated_time" content="2016-02-13T07:03:24.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域">
+<meta name="twitter:description" content="作用域概念在特定的空间或范围内对数据进行读写操作
+作用：读、写操作
+域：空间、范围、区域…
+
+一对script标签就是一个域
+有域的地方就会发生预解释和逐行解释代码的过程
+在解释的时候，是自上而下来解读的，一个处理完再处理另外一个
+123456&amp;lt;script&amp;gt;	alert(a); //报错，因为js会一个个域自上而下的解释，在执行里的时修，a还没有定义&amp;lt;/script&amp;gt;&amp;l">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="weison.org/2016/02/12/scope/"/>
+
+
+
+
+
+  <title> 作用域 | hey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7df39855abf2510dc7b61bc4c6862373";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">hey</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zoXgrR2S_YkhZkfmy-Rq','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/12/scope/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                作用域
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-12T22:46:19+08:00">
+                2016-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/12/scope/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/12/scope/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="作用域概念"><a href="#作用域概念" class="headerlink" title="作用域概念"></a>作用域概念</h2><h3 id="在特定的空间或范围内对数据进行读写操作"><a href="#在特定的空间或范围内对数据进行读写操作" class="headerlink" title="在特定的空间或范围内对数据进行读写操作"></a>在特定的空间或范围内对数据进行读写操作</h3><ol>
+<li>作用：读、写操作</li>
+<li>域：空间、范围、区域…</li>
+</ol>
+<h4 id="一对script标签就是一个域"><a href="#一对script标签就是一个域" class="headerlink" title="一对script标签就是一个域"></a>一对<code>script</code>标签就是一个域</h4><ul>
+<li>有域的地方就会发生预解释和逐行解释代码的过程</li>
+<li><p>在解释的时候，是自上而下来解读的，一个处理完再处理另外一个</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(a); //报错，因为js会一个个域自上而下的解释，在执行里的时修，a还没有定义</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	var a =1;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>自上而下的解释过程中，上一个全局script的变量与函数在下一个全局script中仍然可以被读取写入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">	alert(a); <span class="comment">// =&gt; 1 因为上一个script读写完的数据还是会保存在仓库内，所以a=1，弹出了1</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="一个函数是一个局部作用域"><a href="#一个函数是一个局部作用域" class="headerlink" title="一个函数是一个局部作用域"></a>一个函数是一个局部作用域</h4><h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p>函数内部也算一个作用域，当在预解释过程中，在函数里面没有找到a的变量值时，会从子作用域(fn1)跳到父级作用域查找，这种从里到外的查找的过程叫作用域链<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(a); <span class="comment">//=&gt;1 通过作用域链找到外面的a，a=1;</span></div><div class="line">	<span class="comment">//函数内部也算一个作用域，当在预解释过程中，在函数里面没有找到a的变量值时，</span></div><div class="line">	<span class="comment">//会从子作用域(fn1)跳到父级作用域查找，这种从里到外的查找的过程叫作用域链</span></div><div class="line">	a =<span class="number">2</span>; <span class="comment">//因为在内部作用域没找到a,所以又向外部到了a,然后改变了a的值</span></div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(a); <span class="comment">// =&gt; a=2,a的值被fn1改变了</span></div></pre></td></tr></table></figure></p>
+<h4 id="一个参数就相当于一个局部变量"><a href="#一个参数就相当于一个局部变量" class="headerlink" title="一个参数就相当于一个局部变量"></a>一个参数就相当于一个局部变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">alert(a); <span class="comment">//=&gt;undefined,因为有了一个参数a,相当于var a;，无论有没有传值，fn1都有了局部变量a</span></div><div class="line">a =<span class="number">2</span>; <span class="comment">//局部变量a=2</span></div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(a); <span class="comment">// =&gt; a=1</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	alert(a); <span class="comment">//=&gt;根据传入的参数值，a=1</span></div><div class="line">	a =<span class="number">2</span>; <span class="comment">//局部变量a=2</span></div><div class="line">&#125;</div><div class="line">fn1(a); <span class="comment">//传入全局a的值，a=1</span></div><div class="line">alert(a); <span class="comment">// =&gt; a=1</span></div></pre></td></tr></table></figure>
+<h2 id="js解释过程"><a href="#js解释过程" class="headerlink" title="js解释过程"></a>js解释过程</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//每次都会有预解释的仓库里查找是否有这个变量，</span></div><div class="line"><span class="comment">//而在一开始，所有的变量都会先默认undefined</span></div><div class="line">alert(a); <span class="comment">//=&gt; undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-预解释-‘找一些东西’var-function-参数"><a href="#1-预解释-‘找一些东西’var-function-参数" class="headerlink" title="1.预解释 ‘找一些东西’var function 参数"></a>1.预解释 ‘找一些东西’<code>var</code> <code>function</code> 参数</h3><ol>
+<li>把声明的变量找出来并默认值设为undefined<br>a=undefined</li>
+<li>所有的函数声明，整个提取出来<br>fn1 = function fn1(){alert(1);</li>
+<li>遇到重名的情况</li>
+</ol>
+<ul>
+<li>当变量与函数重名,函数覆盖变量（因为变量值是undefined，<br>而函数是整个函数块，所以会采用函数）</li>
+<li>函数与函数重名时，后面的的覆盖前面的</li>
+</ul>
+<h3 id="2-逐行解读代码"><a href="#2-逐行解读代码" class="headerlink" title="2.逐行解读代码"></a>2.逐行解读代码</h3><h4 id="表达式-Number-参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。"><a href="#表达式-Number-参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。" class="headerlink" title="表达式 + - * / % Number() 参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。"></a>表达式 + - * / % Number() 参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//=&gt;预解释结果 function a()&#123;alert(4)&#125;;</span></div><div class="line"><span class="keyword">var</span> a =<span class="number">1</span>; <span class="comment">// =&gt; 函数被表达式改成了1</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//=&gt; 1 </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">2</span>)&#125;; <span class="comment">//函数没有改变a的值</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt; a=1</span></div><div class="line"><span class="keyword">var</span> a =<span class="number">3</span>; <span class="comment">//表达式把a=3</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt; 3</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">4</span>)&#125;; <span class="comment">//函数没有改变a的值</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt;3</span></div><div class="line">a(); <span class="comment">//=&gt; 3(); a is not a function因为a最终的值是3，a();相当于3()，所有报错</span></div></pre></td></tr></table></figure>
+<h3 id="函数外部读取函数内值的方法"><a href="#函数外部读取函数内值的方法" class="headerlink" title="函数外部读取函数内值的方法"></a>函数外部读取函数内值的方法</h3><h4 id="把全局变量放进函数内，然后把想读取的值赋予这个全局变量"><a href="#把全局变量放进函数内，然后把想读取的值赋予这个全局变量" class="headerlink" title="把全局变量放进函数内，然后把想读取的值赋予这个全局变量"></a>把全局变量放进函数内，然后把想读取的值赋予这个全局变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">''</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> n = <span class="string">'函数内的值'</span>;</div><div class="line">	str = n;</div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(str);</div></pre></td></tr></table></figure>
+<h4 id="局部函数调用-把全局函数放到函数内调用"><a href="#局部函数调用-把全局函数放到函数内调用" class="headerlink" title="局部函数调用(把全局函数放到函数内调用)"></a>局部函数调用(把全局函数放到函数内调用)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">b</span>)</span>&#123;</div><div class="line">	alert(b);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line">	fn1(a); 传入了fn2中a=<span class="number">10</span>的值</div><div class="line">&#125;</div><div class="line">fn2(); <span class="comment">// =&gt;10</span></div></pre></td></tr></table></figure>
+<h3 id="判断是不是作用域，就看有没有预解释的过程"><a href="#判断是不是作用域，就看有没有预解释的过程" class="headerlink" title="判断是不是作用域，就看有没有预解释的过程"></a>判断是不是作用域，就看有没有预解释的过程</h3><h4 id="if-for-do-while都不是作用域"><a href="#if-for-do-while都不是作用域" class="headerlink" title="if``for``do while都不是作用域"></a><code>if``for``do while</code>都不是作用域</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(a); <span class="comment">//=&gt;undefined ,a=undefined是因为if不是作用域，内里的a可以看成是一个全局变量</span></div><div class="line">	<span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">		<span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line">	&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="要注意Firefox下不能对-内的函数进行预解释-所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量"><a href="#要注意Firefox下不能对-内的函数进行预解释-所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量" class="headerlink" title="要注意Firefox下不能对{}内的函数进行预解释,所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量"></a>要注意Firefox下不能对{}内的函数进行预解释,所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(fn1);</div><div class="line">	<span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			alert(<span class="string">'1'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/11/process-control/" rel="next" title="流程控制">
+                <i class="fa fa-chevron-left"></i> 流程控制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/13/objectOriented/" rel="prev" title="面向对象">
+                面向对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/12/scope/"
+           data-title="作用域" data-url="weison.org/2016/02/12/scope/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weison" />
+          <p class="site-author-name" itemprop="name">weison</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域概念"><span class="nav-number">1.</span> <span class="nav-text">作用域概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在特定的空间或范围内对数据进行读写操作"><span class="nav-number">1.1.</span> <span class="nav-text">在特定的空间或范围内对数据进行读写操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一对script标签就是一个域"><span class="nav-number">1.1.1.</span> <span class="nav-text">一对script标签就是一个域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个函数是一个局部作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">一个函数是一个局部作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域链"><span class="nav-number">1.1.3.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个参数就相当于一个局部变量"><span class="nav-number">1.1.4.</span> <span class="nav-text">一个参数就相当于一个局部变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js解释过程"><span class="nav-number">2.</span> <span class="nav-text">js解释过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-预解释-‘找一些东西’var-function-参数"><span class="nav-number">2.1.</span> <span class="nav-text">1.预解释 ‘找一些东西’var function 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-逐行解读代码"><span class="nav-number">2.2.</span> <span class="nav-text">2.逐行解读代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式-Number-参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。"><span class="nav-number">2.2.1.</span> <span class="nav-text">表达式 + - * / % Number() 参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数外部读取函数内值的方法"><span class="nav-number">2.3.</span> <span class="nav-text">函数外部读取函数内值的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把全局变量放进函数内，然后把想读取的值赋予这个全局变量"><span class="nav-number">2.3.1.</span> <span class="nav-text">把全局变量放进函数内，然后把想读取的值赋予这个全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部函数调用-把全局函数放到函数内调用"><span class="nav-number">2.3.2.</span> <span class="nav-text">局部函数调用(把全局函数放到函数内调用)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断是不是作用域，就看有没有预解释的过程"><span class="nav-number">2.4.</span> <span class="nav-text">判断是不是作用域，就看有没有预解释的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if-for-do-while都不是作用域"><span class="nav-number">2.4.1.</span> <span class="nav-text">if``for``do while都不是作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#要注意Firefox下不能对-内的函数进行预解释-所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量"><span class="nav-number">2.4.2.</span> <span class="nav-text">要注意Firefox下不能对{}内的函数进行预解释,所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weison</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weison"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

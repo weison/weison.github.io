@@ -1,0 +1,867 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="通过new Date来获取系统当前时间（本机 时间）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="new Date 系统时间对象">
+<meta property="og:url" content="weison.org/2016/03/23/new-Date/index.html">
+<meta property="og:site_name" content="hey">
+<meta property="og:description" content="通过new Date来获取系统当前时间（本机 时间）">
+<meta property="og:updated_time" content="2016-09-03T14:39:16.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="new Date 系统时间对象">
+<meta name="twitter:description" content="通过new Date来获取系统当前时间（本机 时间）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="weison.org/2016/03/23/new-Date/"/>
+
+
+
+
+
+  <title> new Date 系统时间对象 | hey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7df39855abf2510dc7b61bc4c6862373";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">hey</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zoXgrR2S_YkhZkfmy-Rq','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/03/23/new-Date/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                new Date 系统时间对象
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-23T23:27:43+08:00">
+                2016-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/23/new-Date/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/23/new-Date/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过new Date来获取系统当前时间（本机 时间）<br><a id="more"></a></p>
+<h4 id="时间属性"><a href="#时间属性" class="headerlink" title="时间属性"></a>时间属性</h4><h5 id="getFullYear-年份"><a href="#getFullYear-年份" class="headerlink" title="getFullYear() 年份"></a><code>getFullYear()</code> 年份</h5><h5 id="getMonth-月份"><a href="#getMonth-月份" class="headerlink" title="getMonth() 月份"></a><code>getMonth()</code> 月份</h5><p>返回从0-11的数字，它是把我们的一月份当成0了</p>
+<h5 id="getDate-几号"><a href="#getDate-几号" class="headerlink" title="getDate() 几号"></a><code>getDate()</code> 几号</h5><h5 id="getDay-星期几"><a href="#getDay-星期几" class="headerlink" title="getDay() 星期几"></a><code>getDay()</code> 星期几</h5><p>返回从0-6的数字，0代表星期天</p>
+<h5 id="getHours-小时"><a href="#getHours-小时" class="headerlink" title="getHours()  小时"></a><code>getHours()</code>  小时</h5><h5 id="getMinutes-分钟"><a href="#getMinutes-分钟" class="headerlink" title="getMinutes() 分钟"></a><code>getMinutes()</code> 分钟</h5><h5 id="getSeconds-秒数"><a href="#getSeconds-秒数" class="headerlink" title="getSeconds() 秒数"></a><code>getSeconds()</code> 秒数</h5><h5 id="getTime"><a href="#getTime" class="headerlink" title="getTime()"></a><code>getTime()</code></h5><p>返回从1970年1月1号 0时0分0秒到现在的时间点，单位是毫秒，一般用于检测性能，从开始加载到结束一共用了多长时间</p>
+<h4 id="setDate"><a href="#setDate" class="headerlink" title="setDate()"></a><code>setDate()</code></h4><p>设定日期是当前月的几号<br><figure class="highlight xml"><figcaption><span>javascript</span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate" target="_blank" rel="external">mozilla Date.prototype.setDate</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	date.setDate(<span class="number">15</span>); <span class="comment">//把日期设置为15号</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> time= <span class="keyword">new</span> <span class="built_in">Date</span>(),</div><div class="line">	year  = time.getFullYear(),</div><div class="line">	month = time.getMonth()+<span class="number">1</span>,</div><div class="line">	date  = time.getDate(),</div><div class="line">	week  = time.getDay(),</div><div class="line">	hour  = time.getHours(),</div><div class="line">	min   = time.getMinutes(),</div><div class="line">	sec   = time.getSeconds();</div><div class="line">	<span class="keyword">switch</span>(week)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">0</span> : week = <span class="string">'星期日'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span> : week = <span class="string">'星期一'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span> : week = <span class="string">'星期二'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span> : week = <span class="string">'星期三'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span> : week = <span class="string">'星期四'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">5</span> : week = <span class="string">'星期五'</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">6</span> : week = <span class="string">'星期六'</span>; <span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">//当位数不足时，在前面补0</span></div><div class="line">	<span class="keyword">var</span> doubleTime = <span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> time &lt; <span class="number">10</span> ?  <span class="string">'0'</span> + time : <span class="string">''</span> + time;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> str   = year + <span class="string">'年'</span> + </div><div class="line">				month + <span class="string">'月'</span> +</div><div class="line">				doubleTime(date) + <span class="string">'日 '</span> + </div><div class="line">				doubleTime(hour) + <span class="string">':'</span> + </div><div class="line">				doubleTime(min) + <span class="string">':'</span> + </div><div class="line">				doubleTime(sec) + <span class="string">' '</span> +</div><div class="line">				week;</div><div class="line"><span class="built_in">console</span>.log(str); <span class="comment">// 2016年7月24日 01:38:01 星期日</span></div></pre></td></tr></table></figure>
+<h4 id="倒计时"><a href="#倒计时" class="headerlink" title="倒计时"></a>倒计时</h4><h5 id="在new-Date-中放入特定化的时间点，就会可以获取以字符串形式的时间点"><a href="#在new-Date-中放入特定化的时间点，就会可以获取以字符串形式的时间点" class="headerlink" title="在new Date()中放入特定化的时间点，就会可以获取以字符串形式的时间点"></a>在<code>new Date()</code>中放入特定化的时间点，就会可以获取以字符串形式的时间点</h5><ol>
+<li><p>数字形式 <code>new Date(2016,6,25,9,48,12)</code><br>2016年7月25号 9点48分12秒,要注意的是月份是从0开始算的，所以加1 </p>
+</li>
+<li><p>字符串形式 new Date(‘june 10,2016 14:15:16’)<br>2016年6月10号 14点15分16秒</p>
+</li>
+</ol>
+<ul>
+<li>一月：January </li>
+<li>二月：February</li>
+<li>三月：March</li>
+<li>四月：April</li>
+<li>五月：May </li>
+<li>六月：June </li>
+<li>七月：July</li>
+<li>八月：August </li>
+<li>九月：September </li>
+<li>十月：October </li>
+<li>十一月：November</li>
+<li>十二月：December</li>
+</ul>
+<h5 id="时间转换"><a href="#时间转换" class="headerlink" title="时间转换"></a>时间转换</h5><ul>
+<li>天 <code>Math.floor(t/86400)</code></li>
+<li>时 <code>Math.floor(t%86400/3600)</code></li>
+<li>分 <code>Math.floor(t%86400%3600/60)</code></li>
+<li>秒 <code>t%60</code></li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate" target="_blank" rel="external">setDate方法</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/23/number/" rel="next" title="number 数字类型">
+                <i class="fa fa-chevron-left"></i> number 数字类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/27/cookie/" rel="prev" title="cookie">
+                cookie <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/23/new-Date/"
+           data-title="new Date 系统时间对象" data-url="weison.org/2016/03/23/new-Date/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weison" />
+          <p class="site-author-name" itemprop="name">weison</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间属性"><span class="nav-number">1.</span> <span class="nav-text">时间属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#getFullYear-年份"><span class="nav-number">1.1.</span> <span class="nav-text">getFullYear() 年份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getMonth-月份"><span class="nav-number">1.2.</span> <span class="nav-text">getMonth() 月份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getDate-几号"><span class="nav-number">1.3.</span> <span class="nav-text">getDate() 几号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getDay-星期几"><span class="nav-number">1.4.</span> <span class="nav-text">getDay() 星期几</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getHours-小时"><span class="nav-number">1.5.</span> <span class="nav-text">getHours()  小时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getMinutes-分钟"><span class="nav-number">1.6.</span> <span class="nav-text">getMinutes() 分钟</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getSeconds-秒数"><span class="nav-number">1.7.</span> <span class="nav-text">getSeconds() 秒数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getTime"><span class="nav-number">1.8.</span> <span class="nav-text">getTime()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setDate"><span class="nav-number">2.</span> <span class="nav-text">setDate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#倒计时"><span class="nav-number">3.</span> <span class="nav-text">倒计时</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在new-Date-中放入特定化的时间点，就会可以获取以字符串形式的时间点"><span class="nav-number">3.1.</span> <span class="nav-text">在new Date()中放入特定化的时间点，就会可以获取以字符串形式的时间点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#时间转换"><span class="nav-number">3.2.</span> <span class="nav-text">时间转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weison</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weison"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

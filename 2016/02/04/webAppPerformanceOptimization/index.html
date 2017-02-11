@@ -1,0 +1,929 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="性能优化的方向加载性能一般最核心的就是减少请求数，因为每次请次数据都会产生3次TCP握手，如果每个资源都发出请求，那会很浪费时间。当合并完后要注意代码的压缩，减少体积
+首屏加载时间 一般是指Dom ready时间
+
+initial connection 网络等待时间
+Waiting(TTFB)向服务器请求数据，服务器返回第一个数据包的时间，反应服务器性能
+
+CDN网络分发服务，主要是请求一些静态的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动性能优化">
+<meta property="og:url" content="weison.org/2016/02/04/webAppPerformanceOptimization/index.html">
+<meta property="og:site_name" content="hey">
+<meta property="og:description" content="性能优化的方向加载性能一般最核心的就是减少请求数，因为每次请次数据都会产生3次TCP握手，如果每个资源都发出请求，那会很浪费时间。当合并完后要注意代码的压缩，减少体积
+首屏加载时间 一般是指Dom ready时间
+
+initial connection 网络等待时间
+Waiting(TTFB)向服务器请求数据，服务器返回第一个数据包的时间，反应服务器性能
+
+CDN网络分发服务，主要是请求一些静态的">
+<meta property="og:image" content="http://7xovt0.com1.z0.glb.clouddn.com/chromeTimeline">
+<meta property="og:updated_time" content="2016-08-24T01:22:26.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动性能优化">
+<meta name="twitter:description" content="性能优化的方向加载性能一般最核心的就是减少请求数，因为每次请次数据都会产生3次TCP握手，如果每个资源都发出请求，那会很浪费时间。当合并完后要注意代码的压缩，减少体积
+首屏加载时间 一般是指Dom ready时间
+
+initial connection 网络等待时间
+Waiting(TTFB)向服务器请求数据，服务器返回第一个数据包的时间，反应服务器性能
+
+CDN网络分发服务，主要是请求一些静态的">
+<meta name="twitter:image" content="http://7xovt0.com1.z0.glb.clouddn.com/chromeTimeline">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="weison.org/2016/02/04/webAppPerformanceOptimization/"/>
+
+
+
+
+
+  <title> 移动性能优化 | hey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7df39855abf2510dc7b61bc4c6862373";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">hey</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zoXgrR2S_YkhZkfmy-Rq','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/04/webAppPerformanceOptimization/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动性能优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-04T00:20:00+08:00">
+                2016-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/04/webAppPerformanceOptimization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/04/webAppPerformanceOptimization/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="性能优化的方向"><a href="#性能优化的方向" class="headerlink" title="性能优化的方向"></a>性能优化的方向</h3><h4 id="加载性能"><a href="#加载性能" class="headerlink" title="加载性能"></a>加载性能</h4><p>一般最核心的就是减少请求数，因为每次请次数据都会产生3次TCP握手，如果每个资源都发出请求，那会很浪费时间。当合并完后要注意代码的压缩，减少体积</p>
+<h5 id="首屏加载时间-一般是指Dom-ready时间"><a href="#首屏加载时间-一般是指Dom-ready时间" class="headerlink" title="首屏加载时间 一般是指Dom ready时间"></a>首屏加载时间 一般是指Dom ready时间</h5><p><img src="http://7xovt0.com1.z0.glb.clouddn.com/chromeTimeline" alt="chrome time"></p>
+<ul>
+<li>initial connection 网络等待时间</li>
+<li>Waiting(TTFB)向服务器请求数据，服务器返回第一个数据包的时间，反应服务器性能</li>
+</ul>
+<h5 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h5><p>网络分发服务，主要是请求一些静态的资源.从最靠近的资源节点中获取数据</p>
+<h5 id="避免link中的空href和img中的空src"><a href="#避免link中的空href和img中的空src" class="headerlink" title="避免link中的空href和img中的空src"></a>避免link中的空href和img中的空src</h5><p>因为它也会发送请求的</p>
+<h5 id="使用Gzip压缩"><a href="#使用Gzip压缩" class="headerlink" title="使用Gzip压缩"></a>使用Gzip压缩</h5><h5 id="把css放在顶部"><a href="#把css放在顶部" class="headerlink" title="把css放在顶部"></a>把css放在顶部</h5><p>减少重绘重排的几率</p>
+<h5 id="把js放在底部"><a href="#把js放在底部" class="headerlink" title="把js放在底部"></a>把js放在底部</h5><p>避免js的阻塞</p>
+<h5 id="避免使用css表达式"><a href="#避免使用css表达式" class="headerlink" title="避免使用css表达式"></a>避免使用css表达式</h5><p>主要是针对ie下的expression</p>
+<h5 id="把css和js抽取成外部文件"><a href="#把css和js抽取成外部文件" class="headerlink" title="把css和js抽取成外部文件"></a>把css和js抽取成外部文件</h5><p>这样可以充分利用缓存机制，但并不代表内联就不好，内联的好处就是减少网络请求</p>
+<h5 id="get请求比post请求的速度要快"><a href="#get请求比post请求的速度要快" class="headerlink" title="get请求比post请求的速度要快"></a><code>get</code>请求比<code>post</code>请求的速度要快</h5><ul>
+<li><code>get</code>请求常用于获取数据 </li>
+<li><code>post</code>常用于修改数据</li>
+</ul>
+<h5 id="减少cookie的大小"><a href="#减少cookie的大小" class="headerlink" title="减少cookie的大小"></a>减少cookie的大小</h5><p>因为在每次请求的时候都会带上cookie，如果cookie过大，会造成资源浪费</p>
+<h5 id="html-prefetch"><a href="#html-prefetch" class="headerlink" title="html prefetch"></a><code>html prefetch</code></h5><p>实现域名的预解释和页面的预加载<br><a href="http://www.jianshu.com/p/7f58ddfc1392#" target="_blank" rel="external">HTML5 prefetch-赖小赖小赖 </a></p>
+<h5 id="getscript-动态加载script"><a href="#getscript-动态加载script" class="headerlink" title="$.getscript 动态加载script"></a><code>$.getscript</code> 动态加载script</h5><h5 id="对于非首屏的图片都使用lazyload"><a href="#对于非首屏的图片都使用lazyload" class="headerlink" title="对于非首屏的图片都使用lazyload"></a>对于非首屏的图片都使用lazyload</h5><p>避免资源的浪费，同时避免了资源下载的抢占资源，比如说有100张图片，如果同时加载，那么通过有限的并发时，这100张图片就会占用网络带宽</p>
+<h4 id="js方面的"><a href="#js方面的" class="headerlink" title="js方面的"></a>js方面的</h4><h5 id="尽量不要使用with和eval"><a href="#尽量不要使用with和eval" class="headerlink" title="尽量不要使用with和eval"></a>尽量不要使用with和eval</h5><p>性能低下，而且有作用域转换问题，容易引起bug</p>
+<h5 id="优化DOM操作"><a href="#优化DOM操作" class="headerlink" title="优化DOM操作"></a>优化DOM操作</h5><p><a href="http://developer.51cto.com/art/201508/488053.htm" target="_blank" rel="external">高性能JavaScript DOM编程以及重排与重绘</a></p>
+<h4 id="渲染速度"><a href="#渲染速度" class="headerlink" title="渲染速度"></a>渲染速度</h4><h4 id="用户交互体验速度"><a href="#用户交互体验速度" class="headerlink" title="用户交互体验速度"></a>用户交互体验速度</h4><h4 id="动画流畅性"><a href="#动画流畅性" class="headerlink" title="动画流畅性"></a>动画流畅性</h4><h4 id="DOM操作无闪动"><a href="#DOM操作无闪动" class="headerlink" title="DOM操作无闪动"></a>DOM操作无闪动</h4><h3 id="RTT-Round-trip-time-回路时间"><a href="#RTT-Round-trip-time-回路时间" class="headerlink" title="RTT Round-trip time 回路时间"></a><code>RTT</code> Round-trip time 回路时间</h3><ol>
+<li>一个请求从发起请求到接收到反馈数据的时间 </li>
+</ol>
+<h3 id="网络耗时的测定"><a href="#网络耗时的测定" class="headerlink" title="网络耗时的测定"></a>网络耗时的测定</h3><h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><ol>
+<li>提供的网络测速方法</li>
+</ol>
+<h4 id="Navigation-Timing"><a href="#Navigation-Timing" class="headerlink" title="Navigation Timing"></a>Navigation Timing</h4><ol>
+<li>获取主页相关性能数据</li>
+</ol>
+<h4 id="Resource-Timing"><a href="#Resource-Timing" class="headerlink" title="Resource Timing"></a>Resource Timing</h4><ol>
+<li>获取主页相关资源的性能数据(iframe,image,script..)</li>
+</ol>
+<h3 id="手段"><a href="#手段" class="headerlink" title="手段"></a>手段</h3><h4 id="减少请求数-即使是空请求，也有回路时间"><a href="#减少请求数-即使是空请求，也有回路时间" class="headerlink" title="减少请求数(即使是空请求，也有回路时间)"></a>减少请求数(即使是空请求，也有回路时间)</h4><h4 id="减少传输体积"><a href="#减少传输体积" class="headerlink" title="减少传输体积"></a>减少传输体积</h4><ol>
+<li>首次请求建议不要超过14K(tcp包初始化窗口数10个)</li>
+</ol>
+<h4 id="尽可能利用缓存"><a href="#尽可能利用缓存" class="headerlink" title="尽可能利用缓存"></a>尽可能利用缓存</h4><h4 id="缩短关键路径"><a href="#缩短关键路径" class="headerlink" title="缩短关键路径"></a>缩短关键路径</h4><h4 id="合理安排请求顺序"><a href="#合理安排请求顺序" class="headerlink" title="合理安排请求顺序"></a>合理安排请求顺序</h4><ol>
+<li><a href="http://caniuse.com/" target="_blank" rel="external">浏览器属性支持查询can i use</a></li>
+<li>DNS预解析DNS Prefetch,你浏览一个网页的时候，浏览器会在加载网页时对网页中包含的域名进行解析缓存，这样在你单击当前已经加载完成的网页中的链接时就无需再进行DNS 回源解析，减少用户的等待时间，提高用户体验。</li>
+</ol>
+<ul>
+<li>实现步骤</li>
+<li><meta http-equiv="x-dns-prefetch-control" content="on"><br>用meta信息来告知浏览器, 当前页面要做DNS预解析</li>
+<li><link rel="dns-prefetch" href="//imagecache.qq.com"><br> 在页面的之间使用link标签来强制进行DNS预解析:<br>-　第一步也可以省略。需要注意的是，预解析的域名下通常是存储了js、css、图片等静态资源，并且这些资源必定会在当前页面的下一个页面要加载。否则会添加预解析标签会造成DNS查询次数反而增加，造成访问更慢。所以DNS Prefetch是一项既刺激又危险的技术，使用时需谨慎。</li>
+</ul>
+<ol>
+<li>域名</li>
+<li>链路复用，在一段时间内，服务器会与链接不断开，在时间内向这个向域名发请求，服务器浏览器就不会建立链接，而是直接发送这个请求，这样会节省一个回路时间(1RTT≈200ms)，不过要注意这会增加内存使用</li>
+<li><code>web Workers</code><a href="http://www.w3school.com.cn/html5/html_5_webworkers.asp" target="_blank" rel="external">w3c</a><br><a href="http://blog.jobbole.com/30592/" target="_blank" rel="external">HTML5 Web Worker的使用</a></li>
+<li><code>web Workers</code><a href="http://www.ibm.com/developerworks/cn/web/1112_huangxa_websocket/" target="_blank" rel="external">HTML5 WebSocket</a></li>
+<li>在移动页面上，由于页面元素较小，通过样式内联减少请求从而提升速度<a href="https://www.npmjs.com/package/gulp-inline-css/" target="_blank" rel="external">gulp inline css</a></li>
+<li>组件化开发</li>
+</ol>
+<ul>
+<li>按需/异步加载</li>
+<li>异步渲染</li>
+<li>结合服务器渲染</li>
+</ul>
+<ol>
+<li>图片懒加载</li>
+</ol>
+<ul>
+<li>渲染时不进行src赋值</li>
+<li>插入DOM时进行可视区域计算</li>
+<li>如果图片在可视区内，赋值给src</li>
+<li>如果在可视区外，留着scroll处理</li>
+</ul>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="http://www.jianshu.com/users/aa74c703612d/latest_articles" target="_blank" rel="external">齐修-好奇心日报前端主管的文章</a></li>
+<li><a href="https://aotu.io/notes/2016/03/16/optimization/index.html" target="_blank" rel="external">前端优化不完全指南</a></li>
+<li><a href="https://aotu.io/notes/2016/01/07/debug-webapp-with-chrome-devtools/" target="_blank" rel="external">使用Chrome开发工具优化Web应用</a></li>
+<li><a href="http://www.kancloud.cn/jikeytang/qq/81139" target="_blank" rel="external">豪情-kancloud.</a></li>
+<li><a href="https://isux.tencent.com/zhitu-client.html" target="_blank" rel="external">智图-腾讯出品的图片压缩工具</a></li>
+<li><a href="https://github.com/targetkiller/gulp-imageisux" target="_blank" rel="external">智图gulp插件</a></li>
+<li><a href="https://isux.tencent.com/svg-icon-part-one.html" target="_blank" rel="external">《高清ICON SVG解决方案（上）》</a></li>
+<li><a href="https://isux.tencent.com/svg-icon-part-two.html" target="_blank" rel="external">《高清ICON SVG解决方案（下）》</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/24/event-1/" rel="next" title="event">
+                <i class="fa fa-chevron-left"></i> event
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/09/Operator/" rel="prev" title="运算符">
+                运算符 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/04/webAppPerformanceOptimization/"
+           data-title="移动性能优化" data-url="weison.org/2016/02/04/webAppPerformanceOptimization/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weison" />
+          <p class="site-author-name" itemprop="name">weison</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化的方向"><span class="nav-number">1.</span> <span class="nav-text">性能优化的方向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载性能"><span class="nav-number">1.1.</span> <span class="nav-text">加载性能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首屏加载时间-一般是指Dom-ready时间"><span class="nav-number">1.1.1.</span> <span class="nav-text">首屏加载时间 一般是指Dom ready时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CDN"><span class="nav-number">1.1.2.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免link中的空href和img中的空src"><span class="nav-number">1.1.3.</span> <span class="nav-text">避免link中的空href和img中的空src</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Gzip压缩"><span class="nav-number">1.1.4.</span> <span class="nav-text">使用Gzip压缩</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把css放在顶部"><span class="nav-number">1.1.5.</span> <span class="nav-text">把css放在顶部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把js放在底部"><span class="nav-number">1.1.6.</span> <span class="nav-text">把js放在底部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免使用css表达式"><span class="nav-number">1.1.7.</span> <span class="nav-text">避免使用css表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把css和js抽取成外部文件"><span class="nav-number">1.1.8.</span> <span class="nav-text">把css和js抽取成外部文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#get请求比post请求的速度要快"><span class="nav-number">1.1.9.</span> <span class="nav-text">get请求比post请求的速度要快</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#减少cookie的大小"><span class="nav-number">1.1.10.</span> <span class="nav-text">减少cookie的大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#html-prefetch"><span class="nav-number">1.1.11.</span> <span class="nav-text">html prefetch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getscript-动态加载script"><span class="nav-number">1.1.12.</span> <span class="nav-text">$.getscript 动态加载script</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于非首屏的图片都使用lazyload"><span class="nav-number">1.1.13.</span> <span class="nav-text">对于非首屏的图片都使用lazyload</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js方面的"><span class="nav-number">1.2.</span> <span class="nav-text">js方面的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#尽量不要使用with和eval"><span class="nav-number">1.2.1.</span> <span class="nav-text">尽量不要使用with和eval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化DOM操作"><span class="nav-number">1.2.2.</span> <span class="nav-text">优化DOM操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染速度"><span class="nav-number">1.3.</span> <span class="nav-text">渲染速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户交互体验速度"><span class="nav-number">1.4.</span> <span class="nav-text">用户交互体验速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动画流畅性"><span class="nav-number">1.5.</span> <span class="nav-text">动画流畅性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM操作无闪动"><span class="nav-number">1.6.</span> <span class="nav-text">DOM操作无闪动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RTT-Round-trip-time-回路时间"><span class="nav-number">2.</span> <span class="nav-text">RTT Round-trip time 回路时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络耗时的测定"><span class="nav-number">3.</span> <span class="nav-text">网络耗时的测定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5"><span class="nav-number">3.1.</span> <span class="nav-text">HTML5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigation-Timing"><span class="nav-number">3.2.</span> <span class="nav-text">Navigation Timing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resource-Timing"><span class="nav-number">3.3.</span> <span class="nav-text">Resource Timing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手段"><span class="nav-number">4.</span> <span class="nav-text">手段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#减少请求数-即使是空请求，也有回路时间"><span class="nav-number">4.1.</span> <span class="nav-text">减少请求数(即使是空请求，也有回路时间)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减少传输体积"><span class="nav-number">4.2.</span> <span class="nav-text">减少传输体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尽可能利用缓存"><span class="nav-number">4.3.</span> <span class="nav-text">尽可能利用缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缩短关键路径"><span class="nav-number">4.4.</span> <span class="nav-text">缩短关键路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理安排请求顺序"><span class="nav-number">4.5.</span> <span class="nav-text">合理安排请求顺序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weison</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weison"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

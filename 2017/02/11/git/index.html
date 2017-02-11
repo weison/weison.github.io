@@ -1,0 +1,999 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="git作用
+可以回溯到之前的任意版本
+解决多人协作时的冲突问题
+
+github
+geek平台，可以找到开源项目以及作远程仓库之用
+可视化工具github desktop
+
+svn与git的区别
+svn采用的是集中式的管理方式,所有代码都存放在中 
+git采用的是分布式的管理方式
+
+使用git
+复制仓库 git clone [url]
+设置贡献者,用于在多人协作时识别coder身份
+
+
+git co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用git进行版本控制">
+<meta property="og:url" content="weison.org/2017/02/11/git/index.html">
+<meta property="og:site_name" content="hey">
+<meta property="og:description" content="git作用
+可以回溯到之前的任意版本
+解决多人协作时的冲突问题
+
+github
+geek平台，可以找到开源项目以及作远程仓库之用
+可视化工具github desktop
+
+svn与git的区别
+svn采用的是集中式的管理方式,所有代码都存放在中 
+git采用的是分布式的管理方式
+
+使用git
+复制仓库 git clone [url]
+设置贡献者,用于在多人协作时识别coder身份
+
+
+git co">
+<meta property="og:updated_time" content="2017-01-19T15:07:22.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用git进行版本控制">
+<meta name="twitter:description" content="git作用
+可以回溯到之前的任意版本
+解决多人协作时的冲突问题
+
+github
+geek平台，可以找到开源项目以及作远程仓库之用
+可视化工具github desktop
+
+svn与git的区别
+svn采用的是集中式的管理方式,所有代码都存放在中 
+git采用的是分布式的管理方式
+
+使用git
+复制仓库 git clone [url]
+设置贡献者,用于在多人协作时识别coder身份
+
+
+git co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="weison.org/2017/02/11/git/"/>
+
+
+
+
+
+  <title> 利用git进行版本控制 | hey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7df39855abf2510dc7b61bc4c6862373";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">hey</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zoXgrR2S_YkhZkfmy-Rq','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2017/02/11/git/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用git进行版本控制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-11T10:42:38+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/11/git/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/git/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="git作用"><a href="#git作用" class="headerlink" title="git作用"></a>git作用</h2><ul>
+<li>可以回溯到之前的任意版本</li>
+<li>解决多人协作时的冲突问题</li>
+</ul>
+<h2 id="github"><a href="#github" class="headerlink" title="github"></a><a href="https://github.com/" target="_blank" rel="external">github</a></h2><ul>
+<li>geek平台，可以找到开源项目以及作远程仓库之用</li>
+<li>可视化工具<a href="https://desktop.github.com/" target="_blank" rel="external">github desktop</a></li>
+</ul>
+<h2 id="svn与git的区别"><a href="#svn与git的区别" class="headerlink" title="svn与git的区别"></a>svn与git的区别</h2><ul>
+<li>svn采用的是集中式的管理方式,所有代码都存放在中 </li>
+<li>git采用的是分布式的管理方式</li>
+</ul>
+<h2 id="使用git"><a href="#使用git" class="headerlink" title="使用git"></a>使用git</h2><ul>
+<li>复制仓库 git clone [url]</li>
+<li>设置贡献者,用于在多人协作时识别coder身份</li>
+</ul>
+<ol>
+<li>git config –global user.name “名字” </li>
+<li>git config –global user.email “邮箱地址”</li>
+<li>查看开发者名称 git config –global user.name</li>
+<li>查看开发者邮箱 git config –global user.email</li>
+<li>查看所有git的项目配置文件 git config –list</li>
+</ol>
+<ul>
+<li>分支</li>
+</ul>
+<ol>
+<li>为了保证新增功能不影响主项目的开发，而创建一个与主分支一样的副本文件，当这个副本开发相对完善后再合并到主分支，形成一个新的稳定版本</li>
+<li>默认分支 master</li>
+</ol>
+<ul>
+<li>git的三个区</li>
+</ul>
+<ol>
+<li>工作区，正在编写代码的开发环境</li>
+<li>暂存区<ul>
+<li>作为工作区与版本库的桥梁，减少误操作的风险</li>
+<li>当工作区的文件在误操作时可以通过暂存区复原，也保证未编写完整的代码提示到版本库上</li>
+<li>分支处理，当要临时切换到另外的分支进行开发工作时，可以把正在编写的文件提交到暂存区，然后再切换到另一个分支，当有需要时再切换回来，从暂存区取出代码</li>
+</ul>
+</li>
+<li>版本库</li>
+</ol>
+<ul>
+<li>git 命令</li>
+</ul>
+<ol>
+<li>git status 查看工作区和暂存区的状态，是否有经过编辑<ul>
+<li>Changes not staged for commit  说明已跟踪文件的内容发生了变化，但还没有放到暂存区</li>
+</ul>
+</li>
+<li>git add 文件名 =&gt; git add index.html 将工作区文件添加到暂存区</li>
+<li>git add . 将工作区所有文件添加到暂存区</li>
+<li>git commit -m “修改的内容” =&gt; git commit -m “change on file” 将文件从暂存区添加到版本库</li>
+<li>git commit -a -m “修改内容” =&gt; git commit -a -m “hello” 将文件同步保存到暂存区并添加到版本库,-a就是简写的add</li>
+<li>git log 查看提示记录,当提交记录过多时，不会一下全部打印出来，不过可以按回车来查看，然后按“q”键即可退出</li>
+<li>git diff 对比命令</li>
+<li>git diff 直接使用对比工作区与暂存区的内容</li>
+<li>git diff –cached 或 git diff –staged 暂存区与版本库内容对比</li>
+<li>git diff master 对比本地与版本库<br>1.撤消</li>
+<li>git reset HEAD 文件名 =&gt; git reset HEAD drag.js 将你出去到暂存区的drag.js文件取回到暂存区，相当于取消提交</li>
+<li>git checkout – 文件名 =&gt; git checkout – drag.js 将文件回复到版本库上的内容</li>
+<li>git commit –amend =&gt; git commit -a -m “修正上一版本错误” –amend 覆盖上一次提交到版本库的文件，再重新上传一次<br>1.删除</li>
+<li>git rm 文件名 =&gt; git rm test.txt ，当工作区的文件删除后，使用git rm test.txt 删除暂存区的文件</li>
+<li>git rm -f 文件名 =&gt; git rm -f test.txt 同时删除本地及暂存区的文件</li>
+<li>git rm –cached =&gt; git rm -cached test.txt 只删除暂存区的文件<br>1.恢复</li>
+<li>git checkout commitId 文件名 =&gt; git checkout 50e7b8e0610 drag.js 使用git log 查看提交的id,然后恢复具体的文件</li>
+<li>git reset –hard commitID =&gt; git reset –hard 50e7b8e061 恢复到某个特定版本<ul>
+<li>git reset –hard head^ 返回上一个版本</li>
+<li>git reset –hard head~3 返回前3个版本</li>
+</ul>
+</li>
+<li>git reflog 查看所有操作，当切换到旧版本后git log没有了新的记录，可以通过git reflog查看所有操作，然后然后git reset –hard commit 来回来新版本 <img src="" alt=""><br>1.提交代码</li>
+<li>git remote 远端名称 </li>
+<li>git remote -v 远程地址</li>
+<li>git push 名字 分支名</li>
+<li>haha</li>
+</ol>
+<p>创建并切换到该分支 <code>git checkout -b [分支名称]</code><br>合并分支 <code>git merge [分支名称]</code><br>删除分支 <code>git branch -d [分支名称]</code></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
+<li><a href="https://git-for-windows.github.io/" target="_blank" rel="external">mysysgit</a></li>
+<li><p><a href="http://www.beyondcompare.cc/xiazai.html" target="_blank" rel="external">beyondcompare 文档比较软件</a></p>
+<h1 id="生成钥匙"><a href="#生成钥匙" class="headerlink" title="生成钥匙"></a>生成钥匙</h1></li>
+<li><code>ssh-keygen -t rsa -c &quot;email地址&quot;</code></li>
+<li><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>把它粘贴到github的ssh key上</li>
+</ol>
+<h1 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h1><ol>
+<li><code>touch readme.md</code>创建描述文件</li>
+<li><code>git init</code> 初始化本地目录</li>
+<li><code>git add [fileName]</code>让本地文件提交到暂存区</li>
+<li><code>git commit -am &#39;[更新描述]&#39;</code>  -am的意思，-a代表修改的文件,m代表删除的文件,所以这句话的意思是把所有添加、修改、删除都提交</li>
+<li><code>git remote add [远程地址名称] [远程地址路径]</code>如<code>git remote add origin abc.git</code>就相当于把<code>abc.git</code>起了个名字叫<code>origin</code>,下次提交的时候写<code>git push origin master</code>就相当于推送内容到远端<code>origin</code>下的<code>master</code>分支</li>
+<li><code>git pull</code>更新同步一下远端的代码，</li>
+</ol>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><ol>
+<li><code>git branch -a</code>查看当前本地的所有分支，红色的不加星号的就是远程分支</li>
+<li><code>git branch dev</code>创建一个dev分支</li>
+<li><code>git checkout dev</code>切换到dev分支</li>
+<li><code>git push -u origin dev</code>把本地的分支推送到远程</li>
+</ol>
+<h1 id="代码合并"><a href="#代码合并" class="headerlink" title="代码合并"></a>代码合并</h1><ol>
+<li><code>git add .</code>把最新的修改添加到更新列</li>
+<li><code>git commit -am [更新描述]</code></li>
+<li><code>git pull [远端地址] [分支名称]</code></li>
+<li><code>git push  [远端地址] [分支名称]</code>把内容更新到远端</li>
+<li><code>git merge [分支名称]</code></li>
+<li><code>git merge master</code>把主干<code>master</code>上的所有代码合并到当前分支</li>
+<li>假如冲突(CONFLCT)，要先解决冲突</li>
+</ol>
+<h1 id="代码回溯"><a href="#代码回溯" class="headerlink" title="代码回溯"></a>代码回溯</h1><ol>
+<li><code>git log -l 3</code>查看最近3次的提交</li>
+<li>找到SHA码</li>
+<li><code>git reset --hard [SHA码]</code>将本地的代码强制回到了[SHA]对应的文件(但复原后直接拒绝，会被拒绝),可以使用<br><code>git reset -f --hard [SHA码]</code>来强行提交，不过这样会把在这个版本后的记录都会清除（不建议使用）,为了避免<br>这种情况，可以使用<code>git revert [SHA码]</code>来返回指定的版本，github会把这次回滚理解成一次新的修改，这样会保留记录安全了很多。</li>
+</ol>
+<h1 id="多代码库共享"><a href="#多代码库共享" class="headerlink" title="多代码库共享"></a>多代码库共享</h1><p>参考资料<br><a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">3.2 Git 分支 - 分支的新建与合并</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/yarn/" rel="next" title="yarn">
+                <i class="fa fa-chevron-left"></i> yarn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/11/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/11/git/"
+           data-title="利用git进行版本控制" data-url="weison.org/2017/02/11/git/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weison" />
+          <p class="site-author-name" itemprop="name">weison</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git作用"><span class="nav-number">1.</span> <span class="nav-text">git作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github"><span class="nav-number">2.</span> <span class="nav-text">github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#svn与git的区别"><span class="nav-number">3.</span> <span class="nav-text">svn与git的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git"><span class="nav-number">4.</span> <span class="nav-text">使用git</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number"></span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成钥匙"><span class="nav-number"></span> <span class="nav-text">生成钥匙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建仓库"><span class="nav-number"></span> <span class="nav-text">创建仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支操作"><span class="nav-number"></span> <span class="nav-text">分支操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码合并"><span class="nav-number"></span> <span class="nav-text">代码合并</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码回溯"><span class="nav-number"></span> <span class="nav-text">代码回溯</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多代码库共享"><span class="nav-number"></span> <span class="nav-text">多代码库共享</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weison</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weison"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

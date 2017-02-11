@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="基础知识像素比PPI 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像meta
+name=&amp;quot;viewport&amp;quot; 视口
+content
+width=&amp;quot;[pixel_value || device-width ]&amp;quot; 设置屏幕宽度
+user-scalable = &amp;quot;[yes || no]&amp;quot; 是否允许用户缩放（例如双击或双指放大）
+i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动开发">
+<meta property="og:url" content="weison.org/2016/08/01/mobileDevelop/index.html">
+<meta property="og:site_name" content="hey">
+<meta property="og:description" content="基础知识像素比PPI 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像meta
+name=&amp;quot;viewport&amp;quot; 视口
+content
+width=&amp;quot;[pixel_value || device-width ]&amp;quot; 设置屏幕宽度
+user-scalable = &amp;quot;[yes || no]&amp;quot; 是否允许用户缩放（例如双击或双指放大）
+i">
+<meta property="og:updated_time" content="2016-11-05T16:25:32.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动开发">
+<meta name="twitter:description" content="基础知识像素比PPI 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像meta
+name=&amp;quot;viewport&amp;quot; 视口
+content
+width=&amp;quot;[pixel_value || device-width ]&amp;quot; 设置屏幕宽度
+user-scalable = &amp;quot;[yes || no]&amp;quot; 是否允许用户缩放（例如双击或双指放大）
+i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="weison.org/2016/08/01/mobileDevelop/"/>
+
+
+
+
+
+  <title> 移动开发 | hey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7df39855abf2510dc7b61bc4c6862373";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">hey</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'zoXgrR2S_YkhZkfmy-Rq','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/08/01/mobileDevelop/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-01T00:58:46+08:00">
+                2016-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/01/mobileDevelop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/mobileDevelop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="像素比"><a href="#像素比" class="headerlink" title="像素比"></a>像素比</h2><h3 id="PPI-每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像"><a href="#PPI-每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像" class="headerlink" title="PPI 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像"></a><code>PPI</code> 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像</h3><h3 id="meta"><a href="#meta" class="headerlink" title="meta"></a><code>meta</code></h3><ol>
+<li><code>name=&quot;viewport&quot;</code> 视口</li>
+<li><code>content</code><ul>
+<li><code>width=&quot;[pixel_value || device-width ]&quot;</code> 设置屏幕宽度</li>
+<li><code>user-scalable = &quot;[yes || no]&quot;</code> 是否允许用户缩放（例如双击或双指放大）</li>
+<li><code>initial-scale</code> 初始比例，改变元素的渲染像素，比如一个元素大小为400，那个当<code>initial-scale=2</code>时，它的渲染像素是800</li>
+<li><code>minimum-scale</code> 允许缩放的最小比例</li>
+<li><code>maximum-scale</code> 允许缩放的最大比例<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="window-devicePixelRatio获取屏幕像素比例"><a href="#window-devicePixelRatio获取屏幕像素比例" class="headerlink" title="window.devicePixelRatio获取屏幕像素比例"></a><code>window.devicePixelRatio</code>获取屏幕像素比例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">   <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">var</span> iCalc = <span class="built_in">window</span>.devicePixelRatio; <span class="comment">//获取屏幕像素比</span></div><div class="line">          iCalc = <span class="number">1</span>/iCalc; <span class="comment">//计算出假如在像素比下，一像素等于多于渲染像素</span></div><div class="line">          <span class="keyword">var</span> checkMeta = <span class="built_in">document</span>.createElement(<span class="string">'meta'</span>);</div><div class="line">          checkMeta.name = <span class="string">'viewport'</span>;</div><div class="line">          checkMeta.content = <span class="string">'width=device-width, user-scalable=no, initial-scale='</span>+ iCalc +<span class="string">', maximum-scale='</span>+iCalc+<span class="string">', minimum-scale='</span>+iCalc + <span class="string">''</span>;</div><div class="line">          <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(checkMeta);</div><div class="line">   &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-class">.oBox</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#8BC34A</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"oBox"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="动态设置rem的大小"><a href="#动态设置rem的大小" class="headerlink" title="动态设置rem的大小"></a>动态设置rem的大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  //获取屏幕宽度</div><div class="line">  var iWidth = document.documentElement.clientWidth;</div><div class="line">  //根据屏幕宽度/16计算出1rem是多少 ,16是随意数据，可以随意定</div><div class="line">  var iCalc = iWidth / 16;</div><div class="line">  //设置html的字体大小</div><div class="line">  document.getElementsByTagName(&apos;html&apos;)[0].style.fontSize = iCalc + &apos;px&apos;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>取消点击超链接时的背景颜色</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-tag">a</span>&#123;<span class="attribute">-webkit-tap-highlight-color</span>:transparent&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>取消老版本下input的样式</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-tag">input</span>&#123;<span class="attribute">-webkit-appearance</span>:none&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="屏幕适配"><a href="#屏幕适配" class="headerlink" title="屏幕适配"></a>屏幕适配</h2><h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><ul>
+<li>all 用于所有设备</li>
+<li>aural 已废弃。用于语音和声音合成器</li>
+<li>braille 已废弃。 应用于盲文触摸式反馈设备</li>
+<li>embossed  已废弃。 用于打印的盲人印刷设备</li>
+<li>handheld  已废弃。 用于掌上设备或更小的装置，如PDA和小型电话</li>
+<li>print 用于打印机和打印预览</li>
+<li>projection  已废弃。 用于投影设备</li>
+<li>screen  用于电脑屏幕，平板电脑，智能手机等。</li>
+<li>speech  应用于屏幕阅读器等发声设备</li>
+<li>tty 已废弃。 用于固定的字符网格，如电报、终端设备和对字符有限制的便携设备</li>
+<li>tv  已废弃。 用于电视和网络电视</li>
+</ul>
+<figure class="highlight css"><figcaption><span>css</span><a href="http://www.runoob.com/cssref/css3-pr-mediaquery.html" target="_blank" rel="external">runoob</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*当媒体类型是tv时,body背景颜色为红色*/</span></div><div class="line">@<span class="keyword">media</span> tv&#123;</div><div class="line">  <span class="selector-tag">body</span>&#123;</div><div class="line">    <span class="attribute">background</span>:red;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">media</span> &#123;</div><div class="line">  <span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="comment">/*因为这里写的是所有设备，且样式写在前面的媒体查询后面，所以会覆盖前面的样式*/</span></div><div class="line">    <span class="attribute">background</span>:blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="媒体特性"><a href="#媒体特性" class="headerlink" title="媒体特性"></a>媒体特性</h3><p>在写媒体特性时，要用括号包起来</p>
+<ol>
+<li><code>min-width</code> 当分辨率宽度大于或等于时，启用 </li>
+<li><code>max-width</code> 当分辨率宽度小于或等于时，启用 </li>
+<li><code>orientation : landscape</code> 横屏</li>
+<li><code>orientation : portrait</code> 竖屏 <figure class="highlight css"><figcaption><span>css</span><a href="http://www.runoob.com/cssref/css3-pr-mediaquery.html" target="_blank" rel="external">runoob</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*当媒体类型是tv时,body背景颜色为红色*/</span></div><div class="line">@<span class="keyword">media</span> (min-width:<span class="number">960px</span>)&#123;</div><div class="line"> <span class="comment">/*当分辨率大于或者等于960像素时，使用*/</span></div><div class="line"> <span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">background</span>:red;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h4 id="and-并且，和"><a href="#and-并且，和" class="headerlink" title="and 并且，和"></a><code>and</code> 并且，和</h4><figure class="highlight arduino"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@media (<span class="built_in">min</span>-<span class="built_in">width</span>:<span class="number">200</span>px) and (<span class="built_in">max</span>-<span class="built_in">width</span>:<span class="number">400</span>px)&#123;</div><div class="line">  body&#123;</div><div class="line">  <span class="comment">/*当宽度大于200px且小于400时使用*/</span></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="not-排除"><a href="#not-排除" class="headerlink" title="not 排除"></a><code>not</code> 排除</h4><figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*除了tv以外的设备，都使用该样式*/</span></div><div class="line">@<span class="keyword">media</span> not tv&#123;</div><div class="line">  <span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">background</span>:red;</div><div class="line">&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="only-指定设备"><a href="#only-指定设备" class="headerlink" title="only 指定设备"></a><code>only</code> 指定设备</h4><p>很多时候是用来对那些不支持媒体特性但却支持媒体类型的设备</p>
+<h2 id="离线存储"><a href="#离线存储" class="headerlink" title="离线存储"></a>离线存储</h2><h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><ol>
+<li><a href="http://m.sui.taobao.org/" target="_blank" rel="external">SUI Mobile 阿里巴巴国际UED前端出品的移动端UI库</a> </li>
+<li><a href="https://weui.io/#/" target="_blank" rel="external">Weui 为微信Web服务量身设计</a></li>
+<li><a href="http://imweb.io/topic/578392f6ba724c663b83527d" target="_blank" rel="external">腾讯 sheral——一个方便定制及扩展的UI组件库</a></li>
+<li><a href="http://ant.design/" target="_blank" rel="external">ANT DESIGN一个 UI 设计语言</a></li>
+</ol>
+<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><p>参考链接</p>
+<ol>
+<li><a href="https://www.iyuxy.com/w/" target="_blank" rel="external">推荐几个精致的web UI框架</a></li>
+<li><a href="http://www.imooc.com/activity/planhtml5" target="_blank" rel="external">慕课精选38小时视频</a></li>
+<li><a href="http://www.imooc.com/view/125" target="_blank" rel="external">Web App下图片滑动组件的开发</a></li>
+<li><a href="http://www.imooc.com/view/140" target="_blank" rel="external">移动端的WEB相册</a></li>
+<li><a href="http://www.imooc.com/view/104" target="_blank" rel="external">HTML5存储</a></li>
+<li><a href="http://www.w3school.com.cn/html5/html_5_app_cache.asp" target="_blank" rel="external">HTML 5 应用程序缓存-Application Cache</a></li>
+<li><a href="http://www.imooc.com/learn/46" target="_blank" rel="external">HTML5离线应用实战演练</a></li>
+<li><a href="http://www.shejidaren.com/iphone-resolutions-guide.html" target="_blank" rel="external">iPhone屏幕分辨率终极指南</a></li>
+<li><a href="http://www.runoob.com/cssref/css3-pr-mediaquery.html" target="_blank" rel="external">CSS3 @media查询 | 菜鸟教程</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/21/jquery/" rel="next" title="jquery">
+                <i class="fa fa-chevron-left"></i> jquery
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/08/html5/" rel="prev" title="html5">
+                html5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/01/mobileDevelop/"
+           data-title="移动开发" data-url="weison.org/2016/08/01/mobileDevelop/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weison" />
+          <p class="site-author-name" itemprop="name">weison</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#像素比"><span class="nav-number">1.1.</span> <span class="nav-text">像素比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PPI-每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像"><span class="nav-number">1.1.1.</span> <span class="nav-text">PPI 每英寸所拥有的像素数目。PPI越高，就越能用高密码来显示图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta"><span class="nav-number">1.1.2.</span> <span class="nav-text">meta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-devicePixelRatio获取屏幕像素比例"><span class="nav-number">1.1.3.</span> <span class="nav-text">window.devicePixelRatio获取屏幕像素比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态设置rem的大小"><span class="nav-number">1.1.4.</span> <span class="nav-text">动态设置rem的大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕适配"><span class="nav-number">1.2.</span> <span class="nav-text">屏幕适配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体查询"><span class="nav-number">1.2.1.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体特性"><span class="nav-number">1.2.2.</span> <span class="nav-text">媒体特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字"><span class="nav-number">1.2.3.</span> <span class="nav-text">关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#and-并且，和"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">and 并且，和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#not-排除"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">not 排除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#only-指定设备"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">only 指定设备</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离线存储"><span class="nav-number">1.3.</span> <span class="nav-text">离线存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架"><span class="nav-number">3.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能优化"><span class="nav-number">4.</span> <span class="nav-text">性能优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weison</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weison"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
