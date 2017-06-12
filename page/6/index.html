@@ -285,6 +285,568 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/11/process-control/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/11/process-control/" itemprop="url">
+                  流程控制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-11T00:20:50+08:00">
+                2016-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/11/process-control/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/11/process-control/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a><code>if</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(判断条件)&#123;</div><div class="line">	条件成立执行</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	否则执行这里</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="switch-多件事件挑一件来做"><a href="#switch-多件事件挑一件来做" class="headerlink" title="switch 多件事件挑一件来做"></a><code>switch</code> 多件事件挑一件来做</h3><ol>
+<li><code>break</code> 让代码跳出switch语句，如果忽略<code>break</code>关键字，就会导致执行完一个case继续执行另一个case;</li>
+</ol>
+<ul>
+<li><code>default</code>当所有情况都不成立时所使用的默认值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">switch</span>(判断的内容)&#123;</div><div class="line">   	<span class="keyword">case</span> 判断条件 : 成立操行的动作; <span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">case</span> 判断条件 : 成立操行的动作; <span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">default</span>: 在以上条件都不成立的时候执行;</div><div class="line">   &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>如果确实需要同时混合几种情况，建议添加注释，说明是有意忽略<code>break</code>的<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">switch</span>(i)&#123;</div><div class="line">   	<span class="keyword">case</span> <span class="number">25</span> :</div><div class="line">   	     <span class="comment">/*混合两种情况*/</span></div><div class="line">   	<span class="keyword">case</span> <span class="number">35</span> :</div><div class="line">   		alert(<span class="string">'25 or 35'</span>);</div><div class="line">   		<span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">case</span> <span class="number">45</span> :</div><div class="line">   	 	alert(<span class="string">'45'</span>);</div><div class="line">   	<span class="keyword">default</span>: </div><div class="line">   		alert(<span class="string">'other'</span>);</div><div class="line">   &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>switch()可以使用在任何数据类型中，无论是数字，字符串，还是对象都没有问题。</li>
+</ul>
+<ol>
+<li>使用在布尔值下</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">switch</span>(<span class="literal">true</span>)&#123;</div><div class="line">   	<span class="keyword">case</span> <span class="number">1</span> &gt; <span class="number">0</span> : </div><div class="line">   		alert(<span class="string">'true'</span>);</div><div class="line">   		<span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">default</span>:</div><div class="line">   		alert(<span class="string">'false'</span>);</div><div class="line">   &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>使用在字符串下</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">switch</span>(<span class="string">'hello world'</span>)&#123;</div><div class="line">   	<span class="comment">//要注意world前面有空格</span></div><div class="line">   	<span class="keyword">case</span> <span class="string">'hello'</span> + <span class="string">' world'</span>:</div><div class="line">   		alert(<span class="string">'hello world'</span>);</div><div class="line">   		<span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">case</span> <span class="string">'goodBye'</span>:</div><div class="line">   		alert(<span class="string">'goodBye'</span>);</div><div class="line">   		<span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">default</span>:</div><div class="line">   		alert(<span class="string">'more'</span>);</div><div class="line">   &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>switch()</code>的判断是全等执行(即数据类型和值都相等)的，不会触发类型转换<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">switch</span>(<span class="number">10</span>)&#123;</div><div class="line">   	<span class="keyword">case</span> <span class="string">'10'</span> :</div><div class="line">   		alert(<span class="string">'string'</span>);</div><div class="line">   		<span class="keyword">break</span>;</div><div class="line">   	<span class="keyword">case</span> <span class="number">10</span> :</div><div class="line">   		alert(<span class="string">'number'</span>);</div><div class="line">   		brea;</div><div class="line">   	<span class="keyword">default</span>:</div><div class="line">   		alert(<span class="string">'other'</span>);</div><div class="line">   &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'txt'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'txt2'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> data = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> week = data.getDay();</div><div class="line">		<span class="keyword">var</span> oP = <span class="built_in">document</span>.getElementById(<span class="string">"txt"</span>);</div><div class="line">		<span class="keyword">switch</span>(week)&#123;</div><div class="line">			<span class="keyword">case</span> <span class="number">0</span> : oP.innerHTML = <span class="string">'Sunday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">1</span> : oP.innerHTML = <span class="string">'Monday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">2</span> : oP.innerHTML = <span class="string">'Tuesday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">3</span> : oP.innerHTML = <span class="string">'Wednesday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">4</span> : oP.innerHTML = <span class="string">'Thursday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">5</span> : oP.innerHTML = <span class="string">'Friday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> <span class="number">6</span> : oP.innerHTML = <span class="string">'Saturday'</span>; <span class="keyword">break</span>;</div><div class="line">			<span class="keyword">default</span>: oP.innerHTML = <span class="string">'默认值'</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">//w3c 方案</span></div><div class="line">		<span class="comment">//http://www.w3school.com.cn/jsref/jsref_getDay.asp</span></div><div class="line">		<span class="keyword">var</span> d=<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> weekday=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">7</span>);</div><div class="line">		weekday[<span class="number">0</span>]=<span class="string">"Sunday"</span>;</div><div class="line">		weekday[<span class="number">1</span>]=<span class="string">"Monday"</span>;</div><div class="line">		weekday[<span class="number">2</span>]=<span class="string">"Tuesday"</span>;</div><div class="line">		weekday[<span class="number">3</span>]=<span class="string">"Wednesday"</span>;</div><div class="line">		weekday[<span class="number">4</span>]=<span class="string">"Thursday"</span>;</div><div class="line">		weekday[<span class="number">5</span>]=<span class="string">"Friday"</span>;</div><div class="line">		weekday[<span class="number">6</span>]=<span class="string">"Saturday"</span>;</div><div class="line">		<span class="built_in">document</span>.getElementById(<span class="string">'txt2'</span>).innerHTML = <span class="string">"Today it is "</span> + weekday[d.getDay()];</div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="三目运算"><a href="#三目运算" class="headerlink" title="? :三目运算"></a><code>? :</code>三目运算</h3><p>判断条件 ? 条件成立执行的语句 : 不成立执行的语句 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span> &lt; <span class="number">20</span> ? alert(<span class="string">'true'</span>) : alert(<span class="string">'false'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//当三目运算只要一个成立结果时，可以用`void 0`来充当另一个条件成立的内容</div><div class="line">10 &lt; 20 ? alert(&apos;true&apos;) : void 0;</div></pre></td></tr></table></figure>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h3><p><img src="http://7xovt0.com1.z0.glb.clouddn.com/blogif.jpg" alt="for判断流程"></p>
+<ol>
+<li>设置初始值(<code>var i=0;</code>)</li>
+<li>设置循环执行条件(<code>i&lt;3</code>)</li>
+<li>执行循环体中的内容(<code>{console.log(i);}</code>)</li>
+<li>每轮循环后都执行操作(<code>i++</code>)</li>
+<li>注意当循环遇到<code>break</code>或<code>continute</code>时，后面的代码都不会执行（包含<code>i++</code>都不执行）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="comment">//估计出i会打印几次，以及值是多少 </span></div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">   	<span class="keyword">if</span>(i&lt;=<span class="number">5</span>)&#123;</div><div class="line">   		i+=<span class="number">2</span>;</div><div class="line">   		<span class="keyword">continue</span>;</div><div class="line">   	&#125;</div><div class="line">   	i+=<span class="number">3</span>;</div><div class="line">   	<span class="keyword">break</span>;</div><div class="line">   	<span class="built_in">console</span>.log(i);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(i);</div><div class="line"> <span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(初始化;判断条件;执行后的操作)&#123;</div><div class="line">     执行的语句</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a><code>while</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(判断条件)&#123;</div><div class="line">	执行语句</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(i&lt;<span class="number">3</span>)&#123;</div><div class="line">	alert(i);</div><div class="line">	i++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for...in"></a><code>for...in</code></h3><p>用来循环一个对象的属性名和属性值的<br>数字也可以当属性名，可以通过obj[number]来访问,同时在for循环时，它会先循环数字类型的属性（从小到大），接下按我们定义好的顺序<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">   <span class="keyword">var</span> obj = &#123;</div><div class="line">   	<span class="attr">name</span> :<span class="string">'weison'</span>,</div><div class="line">   	<span class="number">1</span> : <span class="number">10000</span>,</div><div class="line">   	<span class="number">300</span> : <span class="number">200</span>,</div><div class="line">   	<span class="attr">age</span> : <span class="number">20</span>,</div><div class="line">   	<span class="attr">hobby</span> : <span class="string">'football'</span></div><div class="line">   &#125;</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</div><div class="line">   	<span class="built_in">console</span>.log(obj[key]);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//10000  weison</span></div><div class="line">   <span class="comment">//10000 200 weison 20 football</span></div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="跳出循环break与跳过循环continue"><a href="#跳出循环break与跳过循环continue" class="headerlink" title="跳出循环break与跳过循环continue"></a>跳出循环<code>break</code>与跳过循环<code>continue</code></h2><p>跳出循环<code>break</code>指的是不再进行循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">	<span class="keyword">if</span>(i == <span class="number">2</span>)&#123;</div><div class="line">	 <span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'跳出循环了'</span>);</div><div class="line"><span class="comment">// =&gt; 0 1 跳出循环了</span></div></pre></td></tr></table></figure></p>
+<p>跳过循环<code>continue</code>指的是跨过本次循环，进行下一次循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">	<span class="keyword">if</span>(i == <span class="number">2</span>)&#123;</div><div class="line">	 <span class="keyword">continue</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'跳过了循环'</span>);</div><div class="line"><span class="comment">// =&gt; 0 1 3 4 跳过循环了</span></div></pre></td></tr></table></figure></p>
+<h2 id="label为代码添加标签。"><a href="#label为代码添加标签。" class="headerlink" title="label为代码添加标签。"></a><code>label</code>为代码添加标签。</h2><p>配合<code>break</code>或<code>continue</code>来使用可以的循环中跳出到特定位置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">start:<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;i&lt;<span class="number">3</span>;j++)&#123;</div><div class="line">		<span class="keyword">if</span>(i==<span class="number">3</span>;j==<span class="number">2</span>)&#123;</div><div class="line">			<span class="keyword">break</span> start; <span class="comment">//这样操作后，break就会跳出start的循环 </span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">alert(<span class="string">'跳出start循环'</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="数据类型的真假"><a href="#数据类型的真假" class="headerlink" title="数据类型的真假"></a>数据类型的真假</h2><p>数据类型有：</p>
+<ol>
+<li>数字(包含NaN )</li>
+<li>字符串</li>
+<li>布尔值</li>
+<li>函数</li>
+<li>对象(element,[],{},null)</li>
+<li>undefined</li>
+</ol>
+<h3 id="真"><a href="#真" class="headerlink" title="真"></a>真</h3><ol>
+<li>所有非0的数字(1,-1,1231,1.231)</li>
+<li>所有的非空字符串(‘afbd’，’不可思异’,’ ‘有空格)</li>
+<li>true</li>
+<li>所有的函数(function(){})</li>
+<li>能找到的元素</li>
+<li>[],{}数据与json就像一个仓库，无论内面有没有放东西，<br>这个仓库都真实存在，所以永远返回true</li>
+</ol>
+<h3 id="假"><a href="#假" class="headerlink" title="假"></a>假</h3><ol>
+<li>0、NaN </li>
+<li>空字符串(‘’无空格)可以理解为空字符串就像在放屁一样，<br>但里面包含了空格，就是想说但没说，所以会返回true</li>
+<li>false </li>
+<li>不能找到的元素</li>
+<li>null</li>
+<li>undefined 未定义</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/09/Operator/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/09/Operator/" itemprop="url">
+                  运算符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-09T15:44:24+08:00">
+                2016-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/09/Operator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/09/Operator/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算术-加"><a href="#算术-加" class="headerlink" title="算术 + 加"></a>算术 + 加</h3><ol>
+<li>要注意加号在运算时，当有其中一个值是字符时，会将结果隐性转换成字符串</li>
+</ol>
+<h4 id="减"><a href="#减" class="headerlink" title="- 减"></a>- 减</h4><h4 id="乖"><a href="#乖" class="headerlink" title="* 乖"></a>* 乖</h4><h4 id="除"><a href="#除" class="headerlink" title="/ 除"></a>/ 除</h4><h4 id="取模"><a href="#取模" class="headerlink" title="% 取模"></a>% 取模</h4><p>0%3 =0<br>1%3 =1<br>2%3 =2<br>3%3 =0<br>利用取模的当除以一个与除数相同的数时等于0（3%3=0）的特征进行隔行变色,利用鼠标移入记录颜色值，移出时将记录的值还原给li的方法来实现移入变色，移出还原<br>记录index的值，判断index的值是否等于被记录的beCheck值来分配不同的颜色<br><iframe scrolling="no" width="100%" height="300" src="http://jsfiddle.net/a8ezxh84/3/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用取模把秒数转换</span></div><div class="line"><span class="keyword">var</span> s = <span class="number">65</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.floor(s/<span class="number">60</span>)+<span class="string">'分'</span>+s%<span class="number">60</span>+<span class="string">'秒'</span>); <span class="comment">//=&gt; 1分5秒</span></div></pre></td></tr></table></figure>
+<h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><h4 id="gt-大于"><a href="#gt-大于" class="headerlink" title="&gt; 大于"></a><code>&gt;</code> 大于</h4><h4 id="lt-小于"><a href="#lt-小于" class="headerlink" title="&lt; 小于"></a><code>&lt;</code> 小于</h4><h4 id="gt-大于等于"><a href="#gt-大于等于" class="headerlink" title="&gt;= 大于等于"></a><code>&gt;=</code> 大于等于</h4><h4 id="lt-小于等于"><a href="#lt-小于等于" class="headerlink" title="&lt;= 小于等于"></a><code>&lt;=</code> 小于等于</h4><h4 id="数值相等"><a href="#数值相等" class="headerlink" title="== 数值相等"></a><code>==</code> 数值相等</h4><h4 id="数值不等"><a href="#数值不等" class="headerlink" title="!= 数值不等"></a><code>!=</code> 数值不等</h4><h4 id="数值及类型相等"><a href="#数值及类型相等" class="headerlink" title="=== 数值及类型相等"></a><code>===</code> 数值及类型相等</h4><h4 id="数值和类型不等"><a href="#数值和类型不等" class="headerlink" title="!=== 数值和类型不等"></a><code>!===</code> 数值和类型不等</h4><ol>
+<li>只比较值 == != ‘200’ == 200 //=&gt; true</li>
+<li>比较值和数据类型 === !=== ‘200’ == 200 //=&gt; false</li>
+</ol>
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><h4 id="amp-amp-与-所有条件都要成立"><a href="#amp-amp-与-所有条件都要成立" class="headerlink" title="&amp;&amp; 与(所有条件都要成立)"></a><code>&amp;&amp;</code> 与(所有条件都要成立)</h4><ol>
+<li>从左到右判断，两边都成立，才会返回true<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">20</span> &lt; <span class="number">30</span> &amp;&amp; <span class="number">40</span>;</div><div class="line"><span class="built_in">console</span>.log(a); </div><div class="line"><span class="comment">// =&gt; 20 它会从左往向计算，然后返回最终的值给a，如果一开始的判断结果是false，</span></div><div class="line">那么就会直接返回<span class="literal">false</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="或-其中一个条件都要成立"><a href="#或-其中一个条件都要成立" class="headerlink" title="|| 或(其中一个条件都要成立)"></a><code>||</code> 或(其中一个条件都要成立)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b = <span class="number">20</span> &lt; <span class="number">30</span> || <span class="number">40</span>;</div><div class="line"><span class="built_in">console</span>.log(b); </div><div class="line"><span class="comment">// =&gt; true 它会从左往向计算，然后返回第一个值为真的数据，或者判断到最后返回false</span></div><div class="line"><span class="keyword">var</span> c = <span class="number">20</span> &gt; <span class="number">30</span> || <span class="number">20</span> &gt; <span class="number">40</span>;</div><div class="line"><span class="built_in">console</span>.log(c);  <span class="comment">//=&gt; false</span></div><div class="line"><span class="keyword">var</span> d = <span class="number">20</span> &gt; <span class="number">30</span> || <span class="number">30</span> || <span class="number">40</span>;</div><div class="line"><span class="built_in">console</span>.log(d);  <span class="comment">//=&gt; 30</span></div></pre></td></tr></table></figure>
+<h4 id="否-相反"><a href="#否-相反" class="headerlink" title="! 否(相反)"></a><code>!</code> 否(相反)</h4><ol>
+<li><p>将true变成false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e =<span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(!e); <span class="comment">//=&gt;false</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>将数据隐性转换成boolean</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(!<span class="number">200</span>); <span class="comment">//=&gt; false(js中非0数据都为true)</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">	</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/04/webAppPerformanceOptimization/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/04/webAppPerformanceOptimization/" itemprop="url">
+                  移动性能优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-04T00:20:00+08:00">
+                2016-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/04/webAppPerformanceOptimization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/04/webAppPerformanceOptimization/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="性能优化的方向"><a href="#性能优化的方向" class="headerlink" title="性能优化的方向"></a>性能优化的方向</h3><h4 id="加载性能"><a href="#加载性能" class="headerlink" title="加载性能"></a>加载性能</h4><p>一般最核心的就是减少请求数，因为每次请次数据都会产生3次TCP握手，如果每个资源都发出请求，那会很浪费时间。当合并完后要注意代码的压缩，减少体积</p>
+<h5 id="首屏加载时间-一般是指Dom-ready时间"><a href="#首屏加载时间-一般是指Dom-ready时间" class="headerlink" title="首屏加载时间 一般是指Dom ready时间"></a>首屏加载时间 一般是指Dom ready时间</h5><p><img src="http://7xovt0.com1.z0.glb.clouddn.com/chromeTimeline" alt="chrome time"></p>
+<ul>
+<li>initial connection 网络等待时间</li>
+<li>Waiting(TTFB)向服务器请求数据，服务器返回第一个数据包的时间，反应服务器性能</li>
+</ul>
+<h5 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h5><p>网络分发服务，主要是请求一些静态的资源.从最靠近的资源节点中获取数据</p>
+<h5 id="避免link中的空href和img中的空src"><a href="#避免link中的空href和img中的空src" class="headerlink" title="避免link中的空href和img中的空src"></a>避免link中的空href和img中的空src</h5><p>因为它也会发送请求的</p>
+<h5 id="使用Gzip压缩"><a href="#使用Gzip压缩" class="headerlink" title="使用Gzip压缩"></a>使用Gzip压缩</h5><h5 id="把css放在顶部"><a href="#把css放在顶部" class="headerlink" title="把css放在顶部"></a>把css放在顶部</h5><p>减少重绘重排的几率</p>
+<h5 id="把js放在底部"><a href="#把js放在底部" class="headerlink" title="把js放在底部"></a>把js放在底部</h5><p>避免js的阻塞</p>
+<h5 id="避免使用css表达式"><a href="#避免使用css表达式" class="headerlink" title="避免使用css表达式"></a>避免使用css表达式</h5><p>主要是针对ie下的expression</p>
+<h5 id="把css和js抽取成外部文件"><a href="#把css和js抽取成外部文件" class="headerlink" title="把css和js抽取成外部文件"></a>把css和js抽取成外部文件</h5><p>这样可以充分利用缓存机制，但并不代表内联就不好，内联的好处就是减少网络请求</p>
+<h5 id="get请求比post请求的速度要快"><a href="#get请求比post请求的速度要快" class="headerlink" title="get请求比post请求的速度要快"></a><code>get</code>请求比<code>post</code>请求的速度要快</h5><ul>
+<li><code>get</code>请求常用于获取数据 </li>
+<li><code>post</code>常用于修改数据</li>
+</ul>
+<h5 id="减少cookie的大小"><a href="#减少cookie的大小" class="headerlink" title="减少cookie的大小"></a>减少cookie的大小</h5><p>因为在每次请求的时候都会带上cookie，如果cookie过大，会造成资源浪费</p>
+<h5 id="html-prefetch"><a href="#html-prefetch" class="headerlink" title="html prefetch"></a><code>html prefetch</code></h5><p>实现域名的预解释和页面的预加载<br><a href="http://www.jianshu.com/p/7f58ddfc1392#" target="_blank" rel="external">HTML5 prefetch-赖小赖小赖 </a></p>
+<h5 id="getscript-动态加载script"><a href="#getscript-动态加载script" class="headerlink" title="$.getscript 动态加载script"></a><code>$.getscript</code> 动态加载script</h5><h5 id="对于非首屏的图片都使用lazyload"><a href="#对于非首屏的图片都使用lazyload" class="headerlink" title="对于非首屏的图片都使用lazyload"></a>对于非首屏的图片都使用lazyload</h5><p>避免资源的浪费，同时避免了资源下载的抢占资源，比如说有100张图片，如果同时加载，那么通过有限的并发时，这100张图片就会占用网络带宽</p>
+<h4 id="js方面的"><a href="#js方面的" class="headerlink" title="js方面的"></a>js方面的</h4><h5 id="尽量不要使用with和eval"><a href="#尽量不要使用with和eval" class="headerlink" title="尽量不要使用with和eval"></a>尽量不要使用with和eval</h5><p>性能低下，而且有作用域转换问题，容易引起bug</p>
+<h5 id="优化DOM操作"><a href="#优化DOM操作" class="headerlink" title="优化DOM操作"></a>优化DOM操作</h5><p><a href="http://developer.51cto.com/art/201508/488053.htm" target="_blank" rel="external">高性能JavaScript DOM编程以及重排与重绘</a></p>
+<h4 id="渲染速度"><a href="#渲染速度" class="headerlink" title="渲染速度"></a>渲染速度</h4><h4 id="用户交互体验速度"><a href="#用户交互体验速度" class="headerlink" title="用户交互体验速度"></a>用户交互体验速度</h4><h4 id="动画流畅性"><a href="#动画流畅性" class="headerlink" title="动画流畅性"></a>动画流畅性</h4><h4 id="DOM操作无闪动"><a href="#DOM操作无闪动" class="headerlink" title="DOM操作无闪动"></a>DOM操作无闪动</h4><h3 id="RTT-Round-trip-time-回路时间"><a href="#RTT-Round-trip-time-回路时间" class="headerlink" title="RTT Round-trip time 回路时间"></a><code>RTT</code> Round-trip time 回路时间</h3><ol>
+<li>一个请求从发起请求到接收到反馈数据的时间 </li>
+</ol>
+<h3 id="网络耗时的测定"><a href="#网络耗时的测定" class="headerlink" title="网络耗时的测定"></a>网络耗时的测定</h3><h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><ol>
+<li>提供的网络测速方法</li>
+</ol>
+<h4 id="Navigation-Timing"><a href="#Navigation-Timing" class="headerlink" title="Navigation Timing"></a>Navigation Timing</h4><ol>
+<li>获取主页相关性能数据</li>
+</ol>
+<h4 id="Resource-Timing"><a href="#Resource-Timing" class="headerlink" title="Resource Timing"></a>Resource Timing</h4><ol>
+<li>获取主页相关资源的性能数据(iframe,image,script..)</li>
+</ol>
+<h3 id="手段"><a href="#手段" class="headerlink" title="手段"></a>手段</h3><h4 id="减少请求数-即使是空请求，也有回路时间"><a href="#减少请求数-即使是空请求，也有回路时间" class="headerlink" title="减少请求数(即使是空请求，也有回路时间)"></a>减少请求数(即使是空请求，也有回路时间)</h4><h4 id="减少传输体积"><a href="#减少传输体积" class="headerlink" title="减少传输体积"></a>减少传输体积</h4><ol>
+<li>首次请求建议不要超过14K(tcp包初始化窗口数10个)</li>
+</ol>
+<h4 id="尽可能利用缓存"><a href="#尽可能利用缓存" class="headerlink" title="尽可能利用缓存"></a>尽可能利用缓存</h4><h4 id="缩短关键路径"><a href="#缩短关键路径" class="headerlink" title="缩短关键路径"></a>缩短关键路径</h4><h4 id="合理安排请求顺序"><a href="#合理安排请求顺序" class="headerlink" title="合理安排请求顺序"></a>合理安排请求顺序</h4><ol>
+<li><a href="http://caniuse.com/" target="_blank" rel="external">浏览器属性支持查询can i use</a></li>
+<li>DNS预解析DNS Prefetch,你浏览一个网页的时候，浏览器会在加载网页时对网页中包含的域名进行解析缓存，这样在你单击当前已经加载完成的网页中的链接时就无需再进行DNS 回源解析，减少用户的等待时间，提高用户体验。</li>
+</ol>
+<ul>
+<li>实现步骤</li>
+<li><meta http-equiv="x-dns-prefetch-control" content="on"><br>用meta信息来告知浏览器, 当前页面要做DNS预解析</li>
+<li><link rel="dns-prefetch" href="//imagecache.qq.com"><br> 在页面的之间使用link标签来强制进行DNS预解析:<br>-　第一步也可以省略。需要注意的是，预解析的域名下通常是存储了js、css、图片等静态资源，并且这些资源必定会在当前页面的下一个页面要加载。否则会添加预解析标签会造成DNS查询次数反而增加，造成访问更慢。所以DNS Prefetch是一项既刺激又危险的技术，使用时需谨慎。</li>
+</ul>
+<ol>
+<li>域名</li>
+<li>链路复用，在一段时间内，服务器会与链接不断开，在时间内向这个向域名发请求，服务器浏览器就不会建立链接，而是直接发送这个请求，这样会节省一个回路时间(1RTT≈200ms)，不过要注意这会增加内存使用</li>
+<li><code>web Workers</code><a href="http://www.w3school.com.cn/html5/html_5_webworkers.asp" target="_blank" rel="external">w3c</a><br><a href="http://blog.jobbole.com/30592/" target="_blank" rel="external">HTML5 Web Worker的使用</a></li>
+<li><code>web Workers</code><a href="http://www.ibm.com/developerworks/cn/web/1112_huangxa_websocket/" target="_blank" rel="external">HTML5 WebSocket</a></li>
+<li>在移动页面上，由于页面元素较小，通过样式内联减少请求从而提升速度<a href="https://www.npmjs.com/package/gulp-inline-css/" target="_blank" rel="external">gulp inline css</a></li>
+<li>组件化开发</li>
+</ol>
+<ul>
+<li>按需/异步加载</li>
+<li>异步渲染</li>
+<li>结合服务器渲染</li>
+</ul>
+<ol>
+<li>图片懒加载</li>
+</ol>
+<ul>
+<li>渲染时不进行src赋值</li>
+<li>插入DOM时进行可视区域计算</li>
+<li>如果图片在可视区内，赋值给src</li>
+<li>如果在可视区外，留着scroll处理</li>
+</ul>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="http://www.jianshu.com/users/aa74c703612d/latest_articles" target="_blank" rel="external">齐修-好奇心日报前端主管的文章</a></li>
+<li><a href="https://aotu.io/notes/2016/03/16/optimization/index.html" target="_blank" rel="external">前端优化不完全指南</a></li>
+<li><a href="https://aotu.io/notes/2016/01/07/debug-webapp-with-chrome-devtools/" target="_blank" rel="external">使用Chrome开发工具优化Web应用</a></li>
+<li><a href="http://www.kancloud.cn/jikeytang/qq/81139" target="_blank" rel="external">豪情-kancloud.</a></li>
+<li><a href="https://isux.tencent.com/zhitu-client.html" target="_blank" rel="external">智图-腾讯出品的图片压缩工具</a></li>
+<li><a href="https://github.com/targetkiller/gulp-imageisux" target="_blank" rel="external">智图gulp插件</a></li>
+<li><a href="https://isux.tencent.com/svg-icon-part-one.html" target="_blank" rel="external">《高清ICON SVG解决方案（上）》</a></li>
+<li><a href="https://isux.tencent.com/svg-icon-part-two.html" target="_blank" rel="external">《高清ICON SVG解决方案（下）》</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="weison.org/2016/01/24/event-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -628,7 +1190,7 @@
 <li><code>document.documentElement.scrollTop[scrollLeft]</code> 非chrome下</li>
 <li><code>document.body.scrollTop[scrollLeft]</code> chrome因为浏览器的滚动条距离应该是属于body下的</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="comment">//为了兼容地获取滚动条高度</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="comment">//为了兼容地获取滚动条高度</span></div><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <h4 id="内容尺寸"><a href="#内容尺寸" class="headerlink" title="内容尺寸"></a>内容尺寸</h4><ol>
 <li><code>scrollHeight[scrollWidth]</code>元素实际占据的内容的大小，其实就是除了边框以外，内里的内容从顶部到底部的距离</li>
 </ol>
@@ -1252,7 +1814,7 @@
 </ol>
 <h2 id="DOM节点类型"><a href="#DOM节点类型" class="headerlink" title="DOM节点类型"></a>DOM节点类型</h2><ol>
 <li>Element 元素节点</li>
-<li>Text 文本节点(非标准类型的浏览器不支持,如ie8)<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"oUl"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"oUl"</span>);</div><div class="line">		<span class="built_in">console</span>.log(oUl.childNodes.length); <span class="comment">// 9  4个元素节点（li）,5个文本节点(1,2,3,4，回车)</span></div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<li>Text 文本节点(非标准类型的浏览器不支持,如ie8)<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"oUl"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">	window.onload = function()&#123;</div><div class="line">		var oUl = document.getElementById("oUl");</div><div class="line">		console.log(oUl.childNodes.length); // 9  4个元素节点（li）,5个文本节点(1,2,3,4，回车)</div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
@@ -1266,7 +1828,7 @@
 </ul>
 </li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"oUl"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"oUl"</span>);</div><div class="line">		<span class="built_in">console</span>.log(oUl.childNodes.length); <span class="comment">// 9  4个元素节点（li）,5个文本节点(1,2,3,4，回车)</span></div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"oUl"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">	window.onload = function()&#123;</div><div class="line">		var oUl = document.getElementById("oUl");</div><div class="line">		console.log(oUl.childNodes.length); // 9  4个元素节点（li）,5个文本节点(1,2,3,4，回车)</div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="nodeType-当前元素的节点类型"><a href="#nodeType-当前元素的节点类型" class="headerlink" title="nodeType 当前元素的节点类型"></a><code>nodeType</code> 当前元素的节点类型</h3><ul>
 <li>12种节点类型 <a href="http://www.w3school.com.cn/jsref/prop_node_childnodes.asp" target="_blank" rel="external">w3c  childNodes 属性</a></li>
 </ul>
@@ -1279,9 +1841,9 @@
 <li>只读的</li>
 <li>因为一个元素的属性是有多个的，所以要加S</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"attr"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #ccc;"</span>&gt;</span>获取元素属性<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">"attr"</span>);</div><div class="line">	<span class="built_in">console</span>.log(oDiv.attributes[<span class="number">0</span>].nodeType); <span class="comment">// =&gt;2 2代表属性节点</span></div><div class="line">	<span class="built_in">console</span>.log(oDiv.attributes[<span class="number">0</span>].name); <span class="comment">// =&gt; id 获取属性节点的第一个名称</span></div><div class="line">	<span class="built_in">console</span>.log(oDiv.attributes[<span class="number">1</span>].value); <span class="comment">// =&gt; border:1px solid #ccc; 获取元素第2个属性节点的内容值</span></div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"attr"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #ccc;"</span>&gt;</span>获取元素属性<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">window.onload = function()&#123;</div><div class="line">	var oDiv = document.getElementById("attr");</div><div class="line">	console.log(oDiv.attributes[0].nodeType); // =&gt;2 2代表属性节点</div><div class="line">	console.log(oDiv.attributes[0].name); // =&gt; id 获取属性节点的第一个名称</div><div class="line">	console.log(oDiv.attributes[1].value); // =&gt; border:1px solid #ccc; 获取元素第2个属性节点的内容值</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <ol>
-<li>为元素节点添加样式<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"attr"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">"attr"</span>); <span class="comment">//获取元素</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;oDiv.childNodes.length;i++)&#123;</div><div class="line">			<span class="keyword">if</span>(oDiv.childNodes[i].nodeType == <span class="number">1</span>)&#123; <span class="comment">// 当节点类型为1，即代表是元素节点</span></div><div class="line">				oDiv.childNodes[i].style.border = <span class="string">"1px solid red"</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<li>为元素节点添加样式<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"attr"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"></span></div><div class="line">	window.onload = function()&#123;</div><div class="line">		var oDiv = document.getElementById("attr"); //获取元素</div><div class="line">		for(var i=0;i<span class="tag">&lt;<span class="name">oDiv.childNodes.length;i++)&#123;</span></span></div><div class="line">			<span class="attr">if</span>(<span class="attr">oDiv.childNodes</span>[<span class="attr">i</span>]<span class="attr">.nodeType</span> == <span class="string">1)&#123;</span> // 当节点类型为<span class="attr">1</span>，即代表是元素节点</div><div class="line">				<span class="attr">oDiv.childNodes</span>[<span class="attr">i</span>]<span class="attr">.style.border</span> = <span class="string">"1px solid red"</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">	&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="children获取子节点列表集合"><a href="#children获取子节点列表集合" class="headerlink" title="children获取子节点列表集合"></a><code>children</code>获取子节点列表集合</h3><ol>
@@ -1590,427 +2152,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="weison.org/2015/12/12/ajax/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="weison">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="hey">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="hey" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/12/ajax/" itemprop="url">
-                  ajax
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-12T07:44:05+08:00">
-                2015-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/12/12/ajax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/12/ajax/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>ajax（Asynchronous Javascript And XML,异步的javascript和xml），无刷新的情况下进行跟后台数据交互的，可应用于注册表单验证，在线聊天等场景。</p>
-<ol>
-<li>通过标准下的<code>new XMLHttpRequest</code>，ie下的<code>new ActiveXObject()</code>来实例XHR对象</li>
-<li>通过<code>open</code>(‘请求方法’.’请求地址’,是否异步请求)来建议一个数据请求内容，然后通过send方法来与服务器建立链接，假如是POST请求，则可以打请求的内容写到require.send(请求内容)中去。</li>
-<li>当发送请求后，我们可以通过，<code>require.onreadystates</code>为监听请求进度（0.初始化，1.open方法民被调用，2.接收请求头信息，3处理中响应主体，4处理完成）及require.status(200请求成功)</li>
-<li>当这些都成功后，我们通过服务器返回的<code>responseText</code>，利用js的DOM操作动态更新数据</li>
-<li>假如遇到跨域问题（协议，子域名，主域名，端口号不同），需要不同域名之间访问数据，可以通过服务器代理，get情况下考虑使用JSONP（script标签可以请求数据），无需兼容ie10以下版本的XHR2方法来解决跨域。</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/12/12/ajax/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="weison.org/2015/12/11/markdown/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="weison">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="hey">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="hey" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/11/markdown/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-11T08:59:27+08:00">
-                2015-12-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/12/11/markdown/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/11/markdown/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="h1"><a href="#h1" class="headerlink" title="h1"></a>h1</h1><h2 id="h2"><a href="#h2" class="headerlink" title="h2"></a>h2</h2><h3 id="h3"><a href="#h3" class="headerlink" title="h3"></a>h3</h3><h4 id="h4"><a href="#h4" class="headerlink" title="h4"></a>h4</h4><h5 id="h5"><a href="#h5" class="headerlink" title="h5"></a>h5</h5><h6 id="h6"><a href="#h6" class="headerlink" title="h6"></a>h6</h6><p>正文内容不加任何东西</p>
-<p>换行要空一行</p>
-<ul>
-<li>无序列表</li>
-<li>1231</li>
-<li>23131</li>
-</ul>
-<ol>
-<li>有序列表，在前面添加任意数字和点号</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-</ol>
-<p><a href="http://baidu.com" target="_blank" rel="external">超链接</a></p>
-<p><img src="http://img.hb.aicdn.com/aba075f8cc4b901445b715eb65830b9361bf7a2fbb18-Zd82GA_sq320" alt=""></p>
-<p>使用4个空格或一个tab键盘在前面即可生成代码块</p>
-<pre><code>var a=10;
-function(){ console.log(a);}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="weison.org/2015/12/04/new-poster/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="weison">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="hey">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="hey" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/04/new-poster/" itemprop="url">
-                  new poster
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-04T01:02:21+08:00">
-                2015-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/12/04/new-poster/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/04/new-poster/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://7xovt0.com1.z0.glb.clouddn.com/blog9e9ea8e094f3c746f86f56f11b3342bbd4bf01875b68-vDjgnW_fw658.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2058,7 +2199,7 @@ function(){ console.log(a);}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2069,7 +2210,7 @@ function(){ console.log(a);}
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
