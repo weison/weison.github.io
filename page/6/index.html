@@ -285,6 +285,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="weison.org/2016/02/12/scope/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="weison">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hey">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hey" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/12/scope/" itemprop="url">
+                  作用域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-12T22:46:19+08:00">
+                2016-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/12/scope/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/12/scope/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="作用域概念"><a href="#作用域概念" class="headerlink" title="作用域概念"></a>作用域概念</h2><h3 id="在特定的空间或范围内对数据进行读写操作"><a href="#在特定的空间或范围内对数据进行读写操作" class="headerlink" title="在特定的空间或范围内对数据进行读写操作"></a>在特定的空间或范围内对数据进行读写操作</h3><ol>
+<li>作用：读、写操作</li>
+<li>域：空间、范围、区域…</li>
+</ol>
+<h4 id="一对script标签就是一个域"><a href="#一对script标签就是一个域" class="headerlink" title="一对script标签就是一个域"></a>一对<code>script</code>标签就是一个域</h4><ul>
+<li>有域的地方就会发生预解释和逐行解释代码的过程</li>
+<li><p>在解释的时候，是自上而下来解读的，一个处理完再处理另外一个</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(a); //报错，因为js会一个个域自上而下的解释，在执行里的时修，a还没有定义</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	var a =1;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>自上而下的解释过程中，上一个全局script的变量与函数在下一个全局script中仍然可以被读取写入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">	alert(a); <span class="comment">// =&gt; 1 因为上一个script读写完的数据还是会保存在仓库内，所以a=1，弹出了1</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="一个函数是一个局部作用域"><a href="#一个函数是一个局部作用域" class="headerlink" title="一个函数是一个局部作用域"></a>一个函数是一个局部作用域</h4><h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p>函数内部也算一个作用域，当在预解释过程中，在函数里面没有找到a的变量值时，会从子作用域(fn1)跳到父级作用域查找，这种从里到外的查找的过程叫作用域链<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(a); <span class="comment">//=&gt;1 通过作用域链找到外面的a，a=1;</span></div><div class="line">	<span class="comment">//函数内部也算一个作用域，当在预解释过程中，在函数里面没有找到a的变量值时，</span></div><div class="line">	<span class="comment">//会从子作用域(fn1)跳到父级作用域查找，这种从里到外的查找的过程叫作用域链</span></div><div class="line">	a =<span class="number">2</span>; <span class="comment">//因为在内部作用域没找到a,所以又向外部到了a,然后改变了a的值</span></div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(a); <span class="comment">// =&gt; a=2,a的值被fn1改变了</span></div></pre></td></tr></table></figure></p>
+<h4 id="一个参数就相当于一个局部变量"><a href="#一个参数就相当于一个局部变量" class="headerlink" title="一个参数就相当于一个局部变量"></a>一个参数就相当于一个局部变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">alert(a); <span class="comment">//=&gt;undefined,因为有了一个参数a,相当于var a;，无论有没有传值，fn1都有了局部变量a</span></div><div class="line">a =<span class="number">2</span>; <span class="comment">//局部变量a=2</span></div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(a); <span class="comment">// =&gt; a=1</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	alert(a); <span class="comment">//=&gt;根据传入的参数值，a=1</span></div><div class="line">	a =<span class="number">2</span>; <span class="comment">//局部变量a=2</span></div><div class="line">&#125;</div><div class="line">fn1(a); <span class="comment">//传入全局a的值，a=1</span></div><div class="line">alert(a); <span class="comment">// =&gt; a=1</span></div></pre></td></tr></table></figure>
+<h2 id="js解释过程"><a href="#js解释过程" class="headerlink" title="js解释过程"></a>js解释过程</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//每次都会有预解释的仓库里查找是否有这个变量，</span></div><div class="line"><span class="comment">//而在一开始，所有的变量都会先默认undefined</span></div><div class="line">alert(a); <span class="comment">//=&gt; undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-预解释-‘找一些东西’var-function-参数"><a href="#1-预解释-‘找一些东西’var-function-参数" class="headerlink" title="1.预解释 ‘找一些东西’var function 参数"></a>1.预解释 ‘找一些东西’<code>var</code> <code>function</code> 参数</h3><ol>
+<li>把声明的变量找出来并默认值设为undefined<br>a=undefined</li>
+<li>所有的函数声明，整个提取出来<br>fn1 = function fn1(){alert(1);</li>
+<li>遇到重名的情况</li>
+</ol>
+<ul>
+<li>当变量与函数重名,函数覆盖变量（因为变量值是undefined，<br>而函数是整个函数块，所以会采用函数）</li>
+<li>函数与函数重名时，后面的的覆盖前面的</li>
+</ul>
+<h3 id="2-逐行解读代码"><a href="#2-逐行解读代码" class="headerlink" title="2.逐行解读代码"></a>2.逐行解读代码</h3><h4 id="表达式-Number-参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。"><a href="#表达式-Number-参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。" class="headerlink" title="表达式 + - * / % Number() 参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。"></a>表达式 + - * / % Number() 参数，所有能改变变量值的操作都叫表达式，它是可以改变预解释的值的。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//=&gt;预解释结果 function a()&#123;alert(4)&#125;;</span></div><div class="line"><span class="keyword">var</span> a =<span class="number">1</span>; <span class="comment">// =&gt; 函数被表达式改成了1</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//=&gt; 1 </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">2</span>)&#125;; <span class="comment">//函数没有改变a的值</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt; a=1</span></div><div class="line"><span class="keyword">var</span> a =<span class="number">3</span>; <span class="comment">//表达式把a=3</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt; 3</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">4</span>)&#125;; <span class="comment">//函数没有改变a的值</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// =&gt;3</span></div><div class="line">a(); <span class="comment">//=&gt; 3(); a is not a function因为a最终的值是3，a();相当于3()，所有报错</span></div></pre></td></tr></table></figure>
+<h3 id="函数外部读取函数内值的方法"><a href="#函数外部读取函数内值的方法" class="headerlink" title="函数外部读取函数内值的方法"></a>函数外部读取函数内值的方法</h3><h4 id="把全局变量放进函数内，然后把想读取的值赋予这个全局变量"><a href="#把全局变量放进函数内，然后把想读取的值赋予这个全局变量" class="headerlink" title="把全局变量放进函数内，然后把想读取的值赋予这个全局变量"></a>把全局变量放进函数内，然后把想读取的值赋予这个全局变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">''</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> n = <span class="string">'函数内的值'</span>;</div><div class="line">	str = n;</div><div class="line">&#125;</div><div class="line">fn1();</div><div class="line">alert(str);</div></pre></td></tr></table></figure>
+<h4 id="局部函数调用-把全局函数放到函数内调用"><a href="#局部函数调用-把全局函数放到函数内调用" class="headerlink" title="局部函数调用(把全局函数放到函数内调用)"></a>局部函数调用(把全局函数放到函数内调用)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">b</span>)</span>&#123;</div><div class="line">	alert(b);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line">	fn1(a); 传入了fn2中a=<span class="number">10</span>的值</div><div class="line">&#125;</div><div class="line">fn2(); <span class="comment">// =&gt;10</span></div></pre></td></tr></table></figure>
+<h3 id="判断是不是作用域，就看有没有预解释的过程"><a href="#判断是不是作用域，就看有没有预解释的过程" class="headerlink" title="判断是不是作用域，就看有没有预解释的过程"></a>判断是不是作用域，就看有没有预解释的过程</h3><h4 id="if-for-do-while都不是作用域"><a href="#if-for-do-while都不是作用域" class="headerlink" title="if``for``do while都不是作用域"></a><code>if``for``do while</code>都不是作用域</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(a); <span class="comment">//=&gt;undefined ,a=undefined是因为if不是作用域，内里的a可以看成是一个全局变量</span></div><div class="line">	<span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">		<span class="keyword">var</span> a =<span class="number">10</span>;</div><div class="line">	&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="要注意Firefox下不能对-内的函数进行预解释-所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量"><a href="#要注意Firefox下不能对-内的函数进行预解释-所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量" class="headerlink" title="要注意Firefox下不能对{}内的函数进行预解释,所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量"></a>要注意Firefox下不能对{}内的函数进行预解释,所以为了达到兼容的目的，尽量不要在if里定义全局函数和全局变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	alert(fn1);</div><div class="line">	<span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			alert(<span class="string">'1'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="weison.org/2016/02/11/process-control/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1959,199 +2119,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="weison.org/2015/12/31/arr/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="weison">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="hey">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="hey" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/31/arr/" itemprop="url">
-                  数组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-31T23:48:54+08:00">
-                2015-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/12/31/arr/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/arr/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数组的定义与清空"><a href="#数组的定义与清空" class="headerlink" title="数组的定义与清空"></a>数组的定义与清空</h1><ol>
-<li><p><code>new Array</code>及<code>[]</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="comment">/*</span></div><div class="line">	假如 new Array放的是一个数字如</div><div class="line">	var arr1 = new Array(4); // 这是表示arr1的长度为4(length =4)</div><div class="line">	而如果带的是一个字符内容</div><div class="line">	var arr1 = new Array("1"); //则表示arr1数组里有一个'1'的内容(length = 1)</div><div class="line"> */</div></pre></td></tr></table></figure>
-</li>
-<li><p>清空数组的方法 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>];</div><div class="line">arr = []; <span class="comment">//将数组重新赋值为新数组</span></div><div class="line">arr.length = <span class="number">0</span>; <span class="comment">//将数组长度变成0</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>利用length=0的方法清空内容，只适用于数组，不能用于字符串</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abcd'</span>;</div><div class="line">str.length = <span class="number">0</span>;</div><div class="line"><span class="built_in">console</span>.log(str); =&gt; <span class="string">'abcd'</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h1><h2 id="push在数组内部的后面添加内容，并且它会返回这个数组新的长度"><a href="#push在数组内部的后面添加内容，并且它会返回这个数组新的长度" class="headerlink" title="push在数组内部的后面添加内容，并且它会返回这个数组新的长度"></a><code>push</code>在数组内部的后面添加内容，并且它会返回这个数组新的长度</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">arr.push(<span class="string">"10"</span>);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// =&gt; [1,2,3,4,'10'];</span></div><div class="line"><span class="built_in">console</span>.log(arr.push(<span class="number">20</span>)); <span class="comment">// =&gt; 6 返回了arr这个数组的长度</span></div></pre></td></tr></table></figure>
-<h2 id="unshift在数组内部的前面添加内容"><a href="#unshift在数组内部的前面添加内容" class="headerlink" title="unshift在数组内部的前面添加内容"></a><code>unshift</code>在数组内部的前面添加内容</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.unshift(<span class="number">0</span>);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// =&gt; [0,1,2,3];</span></div><div class="line"><span class="built_in">console</span>.log(arr.unshift(<span class="number">-1</span>)); <span class="comment">//  =&gt; 在前面添加一个-1的值，并返回数组长度5，ie6\7不支持返回值</span></div></pre></td></tr></table></figure>
-<h2 id="pop删除数组中的最后一个"><a href="#pop删除数组中的最后一个" class="headerlink" title="pop删除数组中的最后一个"></a><code>pop</code>删除数组中的最后一个</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">arr.pop();</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// =&gt; [1,2,3]; 删除了4</span></div><div class="line"><span class="built_in">console</span>.log(arr.pop()); <span class="comment">// =&gt; 3  ，返回的数值是被删除的那个数组</span></div></pre></td></tr></table></figure>
-<h2 id="shift删除数组中的第一个"><a href="#shift删除数组中的第一个" class="headerlink" title="shift删除数组中的第一个"></a><code>shift</code>删除数组中的第一个</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.shift(); <span class="comment">// =&gt; [2,3];</span></div><div class="line">alert(arr.shift()); <span class="comment">// =&gt; [3]; 删除当前数值的第一个，并返回被删除的数组</span></div></pre></td></tr></table></figure>
-<h2 id="利用shift和push将最前面的内容放在最后面，利用pop和unshift将后面的内容放在最前"><a href="#利用shift和push将最前面的内容放在最后面，利用pop和unshift将后面的内容放在最前" class="headerlink" title="利用shift和push将最前面的内容放在最后面，利用pop和unshift将后面的内容放在最前"></a>利用<code>shift和push</code>将最前面的内容放在最后面，利用<code>pop和unshift</code>将后面的内容放在最前</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">arr.push(arr.shift()); <span class="comment">// =&gt; [2,3,4,1]; 第一个变成最后</span></div><div class="line">arr.unshift(arr.pop()); <span class="comment">// =&gt; [1,2,3,4]; 最后变成第一个</span></div></pre></td></tr></table></figure>
-<h2 id="splice可以删除、替换、增加数组内的内容"><a href="#splice可以删除、替换、增加数组内的内容" class="headerlink" title="splice可以删除、替换、增加数组内的内容"></a><code>splice</code>可以删除、替换、增加数组内的内容</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">arr.splice(<span class="number">0</span>,<span class="number">1</span>); <span class="comment">// =&gt; [2,3,4]; 0表示开始的索引值，1表示需要删除的个数</span></div><div class="line">arr.splice(<span class="number">0</span>,<span class="number">1</span>,<span class="string">'替换'</span>); <span class="comment">// =&gt; ['替换',3,4]; 0表示替换开始的位置，1表示替换的个数，最后一个表示替换的内容</span></div><div class="line">arr.splice(<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>); <span class="comment">// [5,4]; 从索引值为0的数组内容开始查找，到第2个，并将这两个内容替换成"5"</span></div><div class="line">arr.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// =&gt; [5,2,3,4]; 1表示插入数据的索引值，0表示不删除不替换内容，2和3代表插入的数据，后面的内容是插入的内容，可同时添加多个</span></div><div class="line"><span class="built_in">console</span>.log(arr.splice(<span class="number">0</span>,<span class="number">1</span>)); <span class="comment">//=&gt; 5 返回被删除的第一个数组内容 5</span></div></pre></td></tr></table></figure>
-<ol>
-<li>数组去重<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	 * 数组去重</div><div class="line">	 * @param  &#123;[type]&#125; arr [description]</div><div class="line">	 * @return &#123;[type]&#125;     [description]</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123; <span class="comment">//遍历数组</span></div><div class="line">				<span class="keyword">if</span>(arr[i] == arr[j])&#123; <span class="comment">//判断当前数据的值与接下来的数据是否一致</span></div><div class="line">					arr.splice(j,<span class="number">1</span>);  <span class="comment">//如果一致，就把这个数据删除</span></div><div class="line">					j--; <span class="comment">//因为splice后，数组的长度会减少，所以要j要减少1，才会不跳过值</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> arr;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="sort根据unicode编码大小进行排序"><a href="#sort根据unicode编码大小进行排序" class="headerlink" title="sort根据unicode编码大小进行排序"></a><code>sort</code>根据unicode编码大小进行排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>,<span class="string">'e'</span>,<span class="string">'b'</span>];</div><div class="line">arr.sort();</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// =&gt; ['a','b','e'];</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> arr2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">80</span>];</div><div class="line">arr2.sort();</div><div class="line"><span class="built_in">console</span>.log(arr2);  <span class="comment">// =》 [10,20,80,9]; 这是因为sort内部对比是先把内容变成字符串进行比较，而字符串比较是从第一位开始，只要第一位大，那么结果这个数不继续看后面的值</span></div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">	利用对比函数进行数字排序</div><div class="line">	a和b是从数组里面随机抽取2个数字，</div><div class="line">	假如a-b是一个正数，如30-10，则把30和10的位置调换，</div><div class="line">	假如是一个负数，如10-80，则位置不变</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> arr3 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">80</span>,<span class="number">9</span>];</div><div class="line">arr3.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a -b; <span class="comment">// 从小到大排序，return 只接收数字类型</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr3); <span class="comment">// =&gt; [9,10,30,80];</span></div><div class="line">arr3.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> b - a; <span class="comment">// 从大到小排序</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr3); <span class="comment">// =&gt; [80, 30, 10, 9];</span></div><div class="line"><span class="keyword">var</span> arr4 = [<span class="string">'10px'</span>,<span class="string">'5px'</span>,<span class="string">'300px'</span>];</div><div class="line">arr4.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">parseFloat</span>(a) - <span class="built_in">parseFloat</span>(b);</div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(arr4); <span class="comment">// =&gt;["5px", "10px", "300px"] 利用parseFloat把字符串转换成数字再进行比较，注意，这个函数只会调换位置，而不去改变这个数组内的值</span></div><div class="line"><span class="comment">/*</span></div><div class="line">	其它算法</div><div class="line">	快速排序法</div><div class="line">	希尔排序法</div><div class="line">	冒泡</div><div class="line">	归并</div><div class="line">	选择</div><div class="line">	插入</div><div class="line"> */</div></pre></td></tr></table></figure>
-<ol>
-<li><p>利用Math.random和sort()进行随机排序</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">20</span>];</div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">Math</span>.random() - <span class="number">0.5</span>; <span class="comment">// Math.random 是随机生成一个0到1之前的小数</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//=&gt;[20, 7, 2, 1, 10]，因为是随机数，所以可能下次排的结果不一致</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>随机公式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Math</span>.random(); <span class="comment">// 0~1之间的数字</span></div><div class="line"><span class="built_in">Math</span>.random()*<span class="number">5</span>+<span class="number">5</span>;; <span class="comment">//5到10之间的数字</span></div><div class="line"><span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">10</span>) +<span class="number">10</span>; <span class="comment">// 10~20之间的整数,Math.round()将数字转换成四舍五入的整数</span></div><div class="line"><span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">50</span>)+<span class="number">50</span>;  <span class="comment">// 10~20之间的整数</span></div><div class="line"><span class="comment">//由此可见，求x~y之间的数，公式为</span></div><div class="line"><span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*(y-x)+y);</div><div class="line"><span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*x); <span class="comment">//0~x</span></div><div class="line"><span class="built_in">Math</span>.ceil(<span class="built_in">Math</span>.random()*x); <span class="comment">//1~x Math.ceil是向上取整</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="concat连接多个数组"><a href="#concat连接多个数组" class="headerlink" title="concat连接多个数组"></a><code>concat</code>连接多个数组</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> arr2 = [<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">var</span> arr3 = [<span class="number">8</span>,<span class="number">20</span>];</div><div class="line"><span class="keyword">var</span> arr4 = arr1.concat(arr2,arr3);</div><div class="line"><span class="built_in">console</span>.log(arr4); <span class="comment">// =&gt; [1, 2, 3, 4, 5, 8, 20]</span></div></pre></td></tr></table></figure>
-<h2 id="reverse将数组元素从尾到头排列"><a href="#reverse将数组元素从尾到头排列" class="headerlink" title="reverse将数组元素从尾到头排列"></a><code>reverse</code>将数组元素从尾到头排列</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>,<span class="number">10</span>,<span class="string">'d'</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.reverse());</div></pre></td></tr></table></figure>
-<p>1.颠倒字符串<code>split</code>将字符变成数组，<code>reverse</code>反转数组，<code>join</code>将数组变成字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"weison"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>));	<span class="comment">// =&gt; nosiew</span></div></pre></td></tr></table></figure></p>
-<h1 id="json存放数据的一种形式"><a href="#json存放数据的一种形式" class="headerlink" title="json存放数据的一种形式"></a><code>json</code>存放数据的一种形式</h1><h2 id="兼容性好，它是跨平台的，非常适合于服务端与javascript进行交互"><a href="#兼容性好，它是跨平台的，非常适合于服务端与javascript进行交互" class="headerlink" title="兼容性好，它是跨平台的，非常适合于服务端与javascript进行交互"></a>兼容性好，它是跨平台的，非常适合于服务端与javascript进行交互</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> json = &#123;<span class="attr">name</span>:<span class="string">"weison"</span>,<span class="attr">job</span>:<span class="string">"developer"</span>&#125;;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>将数组形式写成json格式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将数组</span></div><div class="line"><span class="keyword">var</span> imgSrc = [<span class="string">"img/1.jpg"</span>,<span class="string">"img/2.jpg"</span>,<span class="string">"img/3.jpg"</span>,<span class="string">"img/4.jpg"</span>];</div><div class="line"><span class="keyword">var</span> imgTxt = [<span class="string">'图片1'</span>,<span class="string">'图片2'</span>,<span class="string">'图片3'</span>,<span class="string">'图片4'</span>];</div><div class="line"><span class="comment">//变成json格式</span></div><div class="line"><span class="keyword">var</span> imgData = &#123;</div><div class="line">	<span class="attr">src</span>:[<span class="string">"img/1.jpg"</span>,<span class="string">"img/2.jpg"</span>,<span class="string">"img/3.jpg"</span>,<span class="string">"img/4.jpg"</span>],</div><div class="line">	<span class="attr">txt</span>:[<span class="string">'图片1'</span>,<span class="string">'图片2'</span>,<span class="string">'图片3'</span>,<span class="string">'图片4'</span>]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>生成、访问、写入数据的方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//生成json</span></div><div class="line"><span class="keyword">var</span> weison = &#123;<span class="attr">name</span>:<span class="string">"weison"</span>,<span class="attr">job</span>:<span class="string">"developer"</span>&#125;; <span class="comment">//键名可以不使用引号包含</span></div><div class="line"><span class="keyword">var</span> json = &#123;<span class="string">"name"</span>:<span class="string">"weison"</span>,<span class="string">"job"</span>:<span class="string">"developer"</span>&#125;; <span class="comment">//也可以包含，在使用上无区别，不过相对来说比较推荐使用这个，因为相对稳定和安全</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> json = &#123;<span class="string">"team1"</span>:[<span class="string">'join'</span>,<span class="string">'lily'</span>],<span class="string">"time"</span>:<span class="number">2015</span>&#125;;<span class="comment">//json里面可以包含多种数据类型</span></div><div class="line"><span class="comment">//访问属性</span></div><div class="line">json.name <span class="comment">// =&gt; weison</span></div><div class="line">json[<span class="string">'name'</span>] <span class="comment">// =&gt; weison 注意中括号里面的要加引号，不然会认为里面的内容是一个变量</span></div><div class="line"><span class="comment">//改写数字</span></div><div class="line">json.job = <span class="string">"designer"</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>利用<code>for in</code>遍历json内的键名和键值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> json = &#123;<span class="attr">name</span>:<span class="string">"weison"</span>,<span class="attr">job</span>:<span class="string">"developer"</span>,<span class="string">"attr"</span>:<span class="string">"json"</span>&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> json)&#123;</div><div class="line">	<span class="built_in">console</span>.log(attr);<span class="comment">//attr即是json的键名</span></div><div class="line">	<span class="built_in">console</span>.log(json[attr]);<span class="comment">//json[attr]即是访问json下每个键名对应的键值,注意这里的attr不要加引号，加后会变成查找json下键名为attr的键值</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>for in</code>也可以用来遍历对象的属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取document下的属性</span></div><div class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="literal">null</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> <span class="built_in">document</span>)&#123;</div><div class="line">	str += num + <span class="string">'.'</span> +attr + <span class="string">':'</span>+ <span class="built_in">document</span>[attr] + <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">	num ++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">document</span>.body.innerHTML = str;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>for in</code>及<code>for</code>的使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> json = &#123;</div><div class="line">	<span class="string">'name'</span> : <span class="string">'wesion'</span>,</div><div class="line">	<span class="string">'job'</span> : <span class="string">'develop'</span></div><div class="line">&#125;;</div><div class="line">json.length <span class="comment">// =&gt; undefinder 因为json是没有长度这个概念的,所以不能用for方法</span></div><div class="line"><span class="keyword">var</span> arr = [<span class="string">'lisa'</span>,<span class="string">'lilei'</span>]; <span class="comment">//数组的默认键名是索引值</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> arr)&#123;</div><div class="line">	<span class="built_in">console</span>.log(attr + <span class="string">':'</span> + arr[attr]);</div><div class="line">&#125;</div><div class="line"><span class="comment">//结果</span></div><div class="line"><span class="comment">/*</span></div><div class="line">	0:lisa</div><div class="line">	1:lilei</div><div class="line"> */</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><ol>
-<li><p>随机生成5个5~10的不重复整数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = []; <span class="comment">//创建数组</span></div><div class="line"><span class="keyword">while</span>(arr.length&lt;<span class="number">5</span>)&#123; </div><div class="line"><span class="comment">//利用while循环，当数组不足够5个时，循环运行生成随机数的函数</span></div><div class="line">		randomNum();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomNum</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">5</span>) + <span class="number">5</span>; <span class="comment">//创建num.Math.random生成随机0~1之间的小数，Math.round用于四舍五入取整数</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123; <span class="comment">//判断否有重复</span></div><div class="line">		<span class="keyword">if</span>(num == arr[i])&#123;</div><div class="line">			<span class="keyword">return</span>; <span class="comment">//如果有重复，则中断函数运行</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	arr.push(num);  <span class="comment">//将不重复的数组内容推送到数组后</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(arr);</div></pre></td></tr></table></figure>
-</li>
-<li><p>返回数组内某一项第一次出现的位置，类似于字符串的indexOf()</p>
-</li>
-</ol>
-<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><ol>
-<li><a href="http://javascript.ruanyifeng.com/stdlib/object.html#toc6" target="_blank" rel="external">toString()的应用：判断数据类型</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="external">mozilla-Function.prototype.call()</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" target="_blank" rel="external">Object.prototype.toString()</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2199,7 +2166,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
